@@ -8,6 +8,7 @@ const handler = (pool) => {
     // Get request for login page
     loginRouter.get("", sessionChecker, (req, res) => {
         // Show login page
+        res.render("login");
     });
 
     // Post request for login

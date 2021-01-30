@@ -85,15 +85,15 @@ const {
     replyRouter,
 } = router(pool);
 
-app.use("/", (req, res) => {
-    // Default route
-    res.redirect("/dashboard");
-});
 app.use("/login", loginRouter);
 app.use("/logout", logoutRouter);
 app.use("/dashboard", dashboardRouter);
 app.use("/request", requestRouter);
 app.use("/reply", replyRouter);
+app.use("*", (req, res) => {
+    // Default route
+    res.redirect("/login");
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
