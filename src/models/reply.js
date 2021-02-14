@@ -1,9 +1,10 @@
 class Reply{
 
-    constructor(id ,requestId ,senderID ,details){
+    constructor(id ,req_id ,user_id ,datetime,body){
         this.id = id;
-        this.requestId = requestId;
-        this.senderID = senderID;
-        this.details = details;
+        this.req_id = req_id;
+        this.user_id = user_id;
+        this.datetime = datetime;
+        this.body = body;
     }
 }

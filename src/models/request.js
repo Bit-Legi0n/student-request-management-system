@@ -1,13 +1,12 @@
 class RequestModel{
 
-    constructor(id ,stdID ,stdName ,stdIndex ,staffId ,requestType ,details ,status){
+    constructor(id ,student_id ,staff_id ,datetime,status,type,body){
         this.id = id;
-        this.stdID = stdID;
-        this.stdName = stdName;
-        this.stdIndex = stdIndex;
-        this.staffId = staffId;
-        this.requestType = requestType;
-        this.details = details;
+        this.student_id = student_id;
+        this.staff_id = staff_id;
+        this.datetime = datetime;
         this.status = status;
+        this.type = type;
+        this.body = body;
     }
 }

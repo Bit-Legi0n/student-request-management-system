@@ -1,15 +1,15 @@
 class User{
 
-    constructor(id, username, isStaff, passwordHash){
+    constructor(id, name, type, passwordHash){
         this.id = id;
-        this.username = username;
-        this.isStaff = isStaff;
+        this.name = name;
+        this.type = type;
         this.passwordHash = passwordHash;
     }
 
     
     validPassword(passwordToTest){
-        
+
         
     }
     
