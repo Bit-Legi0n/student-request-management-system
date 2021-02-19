@@ -10,6 +10,7 @@ const handler = (pool) => {
 
     replyRouter.post("/:requestId/status", authChecker, (req, res) => {
         // Update status of request
+        // Check whether the corresponding staff member
     });
 
     return replyRouter;
