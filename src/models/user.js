@@ -1,3 +1,4 @@
+import bcrypt from "bcrypt";
 class User{
 
     constructor(id, name, type, passwordHash){
