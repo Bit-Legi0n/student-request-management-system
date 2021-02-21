@@ -165,3 +165,14 @@ const saveReply = async (pool, reply) => {
     console.log(error);
   }
 };
+
+export {
+  getUser,
+  getUsername,
+  getRequests,
+  saveRequest,
+  setRequestStatus,
+  getRequest,
+  getReplies,
+  saveReply
+};
