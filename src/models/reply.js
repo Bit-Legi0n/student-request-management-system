@@ -8,3 +8,5 @@ class Reply{
         this.body = body;
     }
 }
+
+export default Reply;
