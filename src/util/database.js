@@ -21,15 +21,19 @@ const getUser = async (pool, id) => {
       "SELECT * FROM users WHERE id=?;",
       [id]
     );
+  } catch (error) {
+    throw "Databse Error";
+  }
+  
+  if (results.length) {
     return new User(
       results[0].id,
       results[0].name,
       results[0].type,
       results[0].password
     );
-  } catch (error) {
-    console.log(error);
   }
+  return null;
 };
 
 // getUsername
@@ -41,10 +45,14 @@ const getUsername = async (pool, id) => {
       "SELECT name FROM users WHERE id=?;",
       [id]
     );
-    return results[0].name;
   } catch (error) {
-    console.log(error);
+    throw "Database Error";
   }
+
+  if (results.length) {
+    return results[0].name;
+  }
+  return null;
 };
 
 // getStaff
@@ -59,6 +67,10 @@ const getRequests = async (pool, studentId) => {
       "SELECT * FROM requests WHERE student_id=?;",
       [studentId]
     );
+  } catch (error) {
+    throw "Database Error";
+  }
+  if (results.length) {
     results.forEach((rec, index, arr) => {
       arr[index] = new RequestModel(
         rec.id,
@@ -71,15 +83,14 @@ const getRequests = async (pool, studentId) => {
       );
     });
     return results;
-  } catch (error) {
-    console.log(error);
   }
+  return null;
+
 };
 
 // saveRequest
 // Save request
 const saveRequest = async (pool, request) => {
-  // Handle the id of the req id
   try {
     await queryPromise(
       pool,
@@ -87,7 +98,7 @@ const saveRequest = async (pool, request) => {
       [Object.values(request)]
     );
   } catch (error) {
-    console.log(error);
+    throw "Database Error";
   }
 };
 
@@ -100,7 +111,7 @@ const setRequestStatus = async (pool, reqId, status) => {
       reqId,
     ]);
   } catch (error) {
-    console.log(error);
+    throw "Database Error";
   }
 };
 
@@ -113,6 +124,11 @@ const getRequest = async (pool, id) => {
       "SELECT * FROM requests WHERE id=?;",
       [id]
     );
+  } catch (error) {
+    throw "Database Error";
+  }
+
+  if (results.length) {
     return new RequestModel(
       results[0].id,
       results[0].student_id,
@@ -122,9 +138,8 @@ const getRequest = async (pool, id) => {
       results[0].type,
       results[0].body
     );
-  } catch (error) {
-    console.log(error);
   }
+  return null;
 };
 
 // getReplies
@@ -136,6 +151,10 @@ const getReplies = async (pool, reqId) => {
       "SELECT * FROM replies WHERE req_id=?;",
       [reqId]
     );
+  } catch (error) {
+    throw "Database Error";
+  }
+  if (results.length) {
     results.forEach((rec, index, arr) => {
       arr[index] = new Reply(
         rec.id,
@@ -146,9 +165,8 @@ const getReplies = async (pool, reqId) => {
       );
     });
     return results;
-  } catch (error) {
-    console.log(error);
   }
+  return null;
 };
 
 // saveReply

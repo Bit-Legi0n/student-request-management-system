@@ -45,6 +45,7 @@ app.set("view engine", "ejs");
 app.disable("x-powered-by");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static("public"));
 app.use(logger("dev"));
 
 // Session store
