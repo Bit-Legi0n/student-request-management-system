@@ -8,7 +8,7 @@ const handler = (pool) => {
 
     replyRouter.post("/:requestId", authChecker, async (req, res) => {
         const reqId = req.params.requestId;
-        const userId = req.session.username;
+        const userId = req.session.user.userId;
         const { id, req_id, user_id, datetime, body } = req.body;
         const reply = Reply(id, req_id, user_id, datetime, body);
 
@@ -33,7 +33,7 @@ const handler = (pool) => {
         // Update status of request
         // Check whether the corresponding staff member
         const reqId = req.params.requestId;
-        const userId = req.session.username;
+        const userId = req.session.user.userId;
 
         const user = await getUser(pool, userId);
         if (user.type == 'staff') {
