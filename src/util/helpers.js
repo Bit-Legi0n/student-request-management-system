@@ -1,4 +1,4 @@
 // Create session cookie
 export const sessionizeUser = (user) => {
-    return { userId: user.id };
+    return { userID: user.id };
 };
