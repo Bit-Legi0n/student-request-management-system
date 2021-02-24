@@ -10,7 +10,7 @@ class User{
 
     
     validPassword(passwordToTest){
-        return bcrypt.compareSync(password, this.password);
+        return bcrypt.compareSync(passwordToTest, this.passwordHash);
     }
     
 }
