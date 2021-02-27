@@ -7,7 +7,7 @@ import {
     getRequest,
 } from "../util/database";
 import Reply from "../models/reply";
-import { uuidv4 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 
 const handler = (pool) => {
     const replyRouter = express.Router();
