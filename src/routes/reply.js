@@ -15,8 +15,8 @@ const handler = (pool) => {
     replyRouter.post("/:requestId", authChecker, async (req, res) => {
         const reqId = req.params.requestId;
         const userId = req.session.user.userId;
-        const { datetime, body } = req.body;
-        const reply = Reply(uuidv4(), reqId, userId, datetime, body);
+        const { body } = req.body;
+        const reply = Reply(uuidv4(), reqId, userId, new Date(), body);
 
         const request = await getRequest(pool, reqId);
         // Check if there exists a req with the given id
