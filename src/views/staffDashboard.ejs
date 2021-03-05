@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>Email Management System - staffDashboard</title>
 </head>
 <body>
@@ -25,5 +27,92 @@
           </div>
         </div>
       </nav>
+<br>
+
+ <div class="container-fluid"> 
+     <div class="row">
+         <div class="col-md-6">
+            <h2>Student Requests</h2>
+         </div>
+        <div class="col-md-6">
+            <input class="form-control" id="myInput" type="text" placeholder="Search..">
+        </div>
+      
+        <br>
+     </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Type</th>
+            <th scope="col">Index Number</th>
+            <th scope="col">Name</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody id="myTable">
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>190564N</td>
+            <td>Nirmal</td>
+            <td>approved</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Dedline</td>
+            <td>190436B</td>
+            <td>Bimsara</td>
+            <td>approved</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Dedline</td>
+            <td>190752S</td>
+            <td>Sanjaya</td>
+            <td>approved</td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>Sick</td>
+            <td>180111D</td>
+            <td>Dilusha</td>
+            <td>approved</td>
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td>Sleep</td>
+            <td>190255M</td>
+            <td>Muditha</td>
+            <td>approved</td>
+          </tr>
+          <tr>
+            <th scope="row">7</th>
+            <td>Dedline</td>
+            <td>190800P</td>
+            <td>Priyashan</td>
+            <td>approved</td>
+          </tr>
+          <tr>
+            <th scope="row">8</th>
+            <td>Late</td>
+            <td>190377T</td>
+            <td>Treshan</td>
+            <td>approved</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>   
+
+    <script>
+        $(document).ready(function(){
+          $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+          });
+        });
+    </script>
 </body>
 </html>
