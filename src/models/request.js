@@ -10,3 +10,5 @@ class RequestModel{
         this.body = body;
     }
 }
+
+export default RequestModel;
