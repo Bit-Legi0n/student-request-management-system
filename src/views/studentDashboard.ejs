@@ -1,82 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <title>Email Management System - Student Dashboard</title>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Student Dashboard</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+   </head>
+   <body>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+         <div class="container-fluid">
+            <a class="navbar-brand" href="#">Student Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Submit a request</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Replies</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Log out</a>
-              </li>
-            </ul>
-          </div>
-        </div>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+               <ul class="navbar-nav">
+                  <li class="nav-item">
+                     <a class="nav-link active" aria-current="page" href="#">Submit a request</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="#">Replies</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="#">Log out</a>
+                  </li>
+               </ul>
+            </div>
+         </div>
       </nav>
-  
-      <div class="container">
-        <div class="row" style="padding-top: 5%;">
-          <div class="col-md-3"></div>
-  
-          <div class="col-md-6">
-            <h3>Submit a request</h3>
-  
-            <div class="mb-3">
-              <input type="text" class="form-control" id="name" placeholder="Name">
+      <div class="container-fluid">
+         <br/>
+         <!-- search bar -->
+         <div class="row">
+            <div class="col-sm-8">
+               <div class="input-group mb-3">
+                  <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                  <div class="input-group-append">
+                     <button class="btn btn-outline-secondary" type="button">Search</button>
+                  </div>
+               </div>
             </div>
-  
-            <div class="mb-3">
-              <input type="text" class="form-control" id="index-number" placeholder="Index Number">
+            <div class="col-sm-4">
+               <button type="button" class="btn btn-outline-danger">Trash</button> 
+               <button type="button" class="btn btn-outline-info">Mark As Read</button> 
+               <button type="button" class="btn btn-outline-warning">Archive</button> 
             </div>
-  
-            <div class="input-group mb-3">
-              <label class="input-group-text" for="inputGroupSelect01">Options</label>
-              <select class="form-select" id="inputGroupSelect01">
-                <option selected>Choose...</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-            </div>
-  
-            <div class="mb-3">
-              <input type="text" class="form-control" id="details" placeholder="Details">
-            </div>
-  
-            <div class="mb-3">
-              <label for="formFile" class="form-label">Default file input example</label>
-              <input class="form-control" type="file" id="formFile">
-            </div>
-  
-            <div class="mb-3">
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-  
-          </div>
-  
-          <div class="col-md-3"></div>
-  
-        </div>
+         </div>
+         <br/>
+         <table class="table table-striped">
+            <thead>
+               <tr>
+                  <th scope="col"></th>
+                  <th scope="col">Reciever Name</th>
+                  <th scope="col">Subject</th>
+                  <th scope="col">
+                     <div class="dropdown show">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Status
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                           <a class="dropdown-item" href="#">Aproved</a>
+                           <a class="dropdown-item" href="#">Pending</a>
+                           <a class="dropdown-item" href="#">Rejected</a>
+                        </div>
+                     </div>
+                  </th>
+                  <th scope="col">Date</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <th scope="row"> <input type="checkbox" aria-label="Checkbox for following text input"></th>
+                  <td>Prof. D.C.Perera</td>
+                  <td>Reqesting Moodle Acsses</td>
+                  <td><span class="badge badge-warning">pending</span></td>
+                  <td>2021/03/07</td>
+               </tr>
+               <tr>
+                  <th scope="row"> <input type="checkbox" aria-label="Checkbox for following text input"></th>
+                  <td>Prof. D.C.Perera</td>
+                  <td>Reqesting Password for Acsses</td>
+                  <td><span class="badge badge-danger">rejected</span></td>
+                  <td>2021/03/07</td>
+               </tr>
+               <tr>
+                  <th scope="row"> <input type="checkbox" aria-label="Checkbox for following text input"></th>
+                  <td>Prof. D.W. William</td>
+                  <td>Reqesting Password for Acsses</td>
+                  <td><span class="badge badge-success">aprove</span></td>
+                  <td>2021/03/01</td>
+                  </tr
+               <tr>
+                  <th scope="row"> <input type="checkbox" aria-label="Checkbox for following text input"></th>
+                  <td>Prof. B.C.James</td>
+                  <td>Reqesting Leave</td>
+                  <td><span class="badge badge-success">aprove</span></td>
+                  <td>2021/02/21</td>
+               </tr>
+            </tbody>
+         </table>
       </div>
       <!-- Optional JavaScript; choose one of the two! -->
-  
       <!-- Option 1: Bootstrap Bundle with Popper -->
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-  
-</body>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+   </body>
 </html>
