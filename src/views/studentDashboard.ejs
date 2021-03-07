@@ -31,7 +31,7 @@
          <br/>
          <!-- search bar -->
          <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-7">
                <div class="input-group mb-3">
                   <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
                   <div class="input-group-append">
@@ -39,10 +39,11 @@
                   </div>
                </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-5">
                <button type="button" class="btn btn-outline-danger">Trash</button> 
                <button type="button" class="btn btn-outline-info">Mark As Read</button> 
                <button type="button" class="btn btn-outline-warning">Archive</button> 
+               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Compose New Request</button>
             </div>
          </div>
          <br/>
@@ -98,6 +99,43 @@
                </tr>
             </tbody>
          </table>
+         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  <div class="modal-body">
+                     <form>
+                        <div class="form-group">
+                           <label for="recipient-name" class="col-form-label">Recipient:</label>
+                           <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="form-group">
+                           <label for="message-text" class="col-form-label">Message:</label>
+                           <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                        <div class="input-group mb-3">
+                           <div class="custom-file">
+                              <input type="file" class="custom-file-input" id="inputGroupFile02">
+                              <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
+                           </div>
+                           <div class="input-group-append">
+                              <span class="input-group-text" id="">Upload</span>
+                           </div>
+                        </div>
+                     </form>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                     <button type="button" class="btn btn-primary">Send message</button>
+                  </div>
+               </div>
+            </div>
+         </div>
       </div>
       <!-- Optional JavaScript; choose one of the two! -->
       <!-- Option 1: Bootstrap Bundle with Popper -->
