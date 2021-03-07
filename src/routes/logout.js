@@ -1,5 +1,5 @@
 import express from "express";
-import{SESS_NAME} from "./config/constants";
+import{SESS_NAME} from "../config/constants";
 
 const handler = (pool) => {
     const logoutRouter = express.Router();
