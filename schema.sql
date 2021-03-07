@@ -11,7 +11,7 @@ CREATE TABLE `users` (
   `password` varchar(255) DEFAULT NULL,
   `type` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-)
+);
 
 
 -- Table: requests
@@ -30,7 +30,7 @@ CREATE TABLE `requests` (
   KEY `staff_id` (`staff_id`),
   CONSTRAINT `requests_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `users` (`id`),
   CONSTRAINT `requests_ibfk_2` FOREIGN KEY (`staff_id`) REFERENCES `users` (`id`)
-)
+);
 
 
 -- Table: replies
@@ -47,7 +47,7 @@ CREATE TABLE `replies` (
   KEY `replies_ibfk_2_idx` (`req_id`),
   CONSTRAINT `replies_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   CONSTRAINT `replies_ibfk_2` FOREIGN KEY (`req_id`) REFERENCES `requests` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-)
+);
 
 
 -- Table: staff_types
@@ -55,7 +55,7 @@ DROP TABLE IF EXISTS `staff_types`;
 
 CREATE TABLE `staff_types` (
   `type` varchar(30) DEFAULT NULL
-)
+);
 
 
 -- Table: files
@@ -69,4 +69,4 @@ CREATE TABLE `files` (
   PRIMARY KEY (`id`),
   KEY `req_id` (`req_id`),
   CONSTRAINT `files_ibfk_1` FOREIGN KEY (`req_id`) REFERENCES `requests` (`id`)
-)
+);
