@@ -60,15 +60,15 @@ const getUsername = async (pool, id) => {
 // getStaff
 // Get relevant staff members for new request form
 
-// getRequests
+// getRequestsForUser
 // Get list of requests for a given user
-const getRequests = async (pool, studentId) => {
+const getRequestsForUser = async (pool, id) => {
   let results;
   try {
     results = await queryPromise(
       pool,
       "SELECT * FROM requests WHERE student_id=?;",
-      [studentId]
+      [id]
     );
   } catch (error) {
     throw "Database Error";
@@ -146,9 +146,9 @@ const getRequest = async (pool, id) => {
   return null;
 };
 
-// getReplies
+// getRepliesForRequest
 // Get list of replies given requestId
-const getReplies = async (pool, reqId) => {
+const getRepliesForRequest = async (pool, reqId) => {
   let results;
   try {
     results = await queryPromise(
@@ -192,10 +192,10 @@ const saveReply = async (pool, reply) => {
 export {
   getUserById,
   getUsername,
-  getRequests,
+  getRequestsForUser,
   saveRequest,
   setRequestStatus,
   getRequest,
-  getReplies,
+  getRepliesForRequest,
   saveReply
 };

@@ -1,7 +1,7 @@
 import express from "express";
 import { v4 as uuidv4 } from "uuid";
 import RequestModel from "../models/request";
-import { getReplies, getRequest, saveRequest } from "../util/database";
+import { getRepliesForRequest, getRequest, saveRequest } from "../util/database";
 import { authChecker } from "../util/middleware";
 
 const handler = (pool) => {
@@ -16,7 +16,7 @@ const handler = (pool) => {
 
         if (request) {
             if (userId === request.student_id || userId === request.staff_id) {
-                const replies = await getReplies(pool, requestId);
+                const replies = await getRepliesForRequest(pool, requestId);
                 res.render("request", {
                     request,
                     replies,
