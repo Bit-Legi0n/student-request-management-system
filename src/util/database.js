@@ -15,8 +15,9 @@ const queryPromise = (pool, sql, values) =>
 // getUser
 // Get User object given username
 const getUser = async (pool, id) => {
+  let results;
   try {
-    const results = await queryPromise(
+    results = await queryPromise(
       pool,
       "SELECT * FROM users WHERE id=?;",
       [id]
@@ -39,8 +40,9 @@ const getUser = async (pool, id) => {
 // getUsername
 // Get username given userId
 const getUsername = async (pool, id) => {
+  let results;
   try {
-    const results = await queryPromise(
+    results = await queryPromise(
       pool,
       "SELECT name FROM users WHERE id=?;",
       [id]
@@ -61,8 +63,9 @@ const getUsername = async (pool, id) => {
 // getRequests
 // Get list of requests for a given user
 const getRequests = async (pool, studentId) => {
+  let results;
   try {
-    const results = await queryPromise(
+    results = await queryPromise(
       pool,
       "SELECT * FROM requests WHERE student_id=?;",
       [studentId]
@@ -118,8 +121,9 @@ const setRequestStatus = async (pool, reqId, status) => {
 // getRequest
 // Get Request object given requestId
 const getRequest = async (pool, id) => {
+  let results;
   try {
-    const results = await queryPromise(
+    results = await queryPromise(
       pool,
       "SELECT * FROM requests WHERE id=?;",
       [id]
@@ -145,8 +149,9 @@ const getRequest = async (pool, id) => {
 // getReplies
 // Get list of replies given requestId
 const getReplies = async (pool, reqId) => {
+  let results;
   try {
-    const results = await queryPromise(
+    results = await queryPromise(
       pool,
       "SELECT * FROM replies WHERE req_id=?;",
       [reqId]
