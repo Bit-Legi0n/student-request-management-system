@@ -12,9 +12,9 @@ const queryPromise = (pool, sql, values) =>
     });
   });
 
-// getUser
+// getUserById
 // Get User object given username
-const getUser = async (pool, id) => {
+const getUserById = async (pool, id) => {
   let results;
   try {
     results = await queryPromise(
@@ -190,7 +190,7 @@ const saveReply = async (pool, reply) => {
 };
 
 export {
-  getUser,
+  getUserById,
   getUsername,
   getRequests,
   saveRequest,

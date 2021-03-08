@@ -2,7 +2,7 @@ import express from "express";
 import { authChecker } from "../util/middleware";
 import {
     saveReply,
-    getUser,
+    getUserById,
     setRequestStatus,
     getRequest,
 } from "../util/database";
@@ -39,7 +39,7 @@ const handler = (pool) => {
         const reqId = req.params.requestId;
         const userId = req.session.user.userId;
 
-        const user = await getUser(pool, userId);
+        const user = await getUserById(pool, userId);
         if (user.type == "staff") {
             const request = await getRequest(pool, reqId);
             if (request && request.staff_id == userId) {

@@ -1,7 +1,7 @@
 import express from "express";
 import { sessionChecker } from "../util/middleware";
 import { sessionizeUser } from "../util/helpers";
-import {getUser} from "../util/database";
+import {getUserById} from "../util/database";
 import User from "../models/user";
 
 const handler = (pool) => {
@@ -18,7 +18,7 @@ const handler = (pool) => {
         
         const {username , password} = req.body;
 
-        const user = await getUser(pool,username);
+        const user = await getUserById(pool,username);
 
         if(!user) {
             res.redirect('/login');
