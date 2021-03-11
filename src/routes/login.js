@@ -2,7 +2,7 @@ import express from "express";
 import { sessionChecker } from "../util/middleware";
 import { sessionizeUser } from "../util/helpers";
 import {getUserById} from "../util/database";
-import User from "../models/user";
+
 
 const handler = (pool) => {
     const loginRouter = express.Router();
