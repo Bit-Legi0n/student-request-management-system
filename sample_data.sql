@@ -3,38 +3,33 @@ INSERT INTO `srms`.`users` (`id`, `name`, `password`, `type`)
 VALUES (
         "190111B",
         "Nimantha Cooray",
-        "$2b$10$r4EmR9Mg4jR/PZWvfk8Dw.1amKo9ucE4T812cpMocVTsz6sdkfwVe",
+        "$2b$10$r4EmR9Mg4jR/PZWvfk8Dw.1amKo9ucE4T812cpMocVTsz6sdkfwVe", -- nimantha123
         "Student"
     ),
-    --nimantha123
     (
         "190349K",
         "Nethum Lamahewage",
-        "$2b$10$y86P9aVfyWlg4UB8gcy1Q.VHVbG00O.D82BBpKD23SoH7BBN31foi",
+        "$2b$10$y86P9aVfyWlg4UB8gcy1Q.VHVbG00O.D82BBpKD23SoH7BBN31foi", -- nethum123
         "Staff"
     ),
-    --nethum123
     (
         "190093T",
         "Bimsara Bodaragama",
-        "$2b$10$Pgaq/qIordM1i7GQZPLasenuaEKJcO4DdioTd8fXnHIaphc/aGig.",
+        "$2b$10$Pgaq/qIordM1i7GQZPLasenuaEKJcO4DdioTd8fXnHIaphc/aGig.", -- bimsara123
         "Staff"
     ),
-    --bimsara123
     (
         "190478E",
         "Dilusha Madushan",
-        "$2b$10$gHB.xIMVEJ9tBo8RFSfd7eIy6CoeQWJ6EJ/7YpkrgKpbQyLkt/1ga",
+        "$2b$10$gHB.xIMVEJ9tBo8RFSfd7eIy6CoeQWJ6EJ/7YpkrgKpbQyLkt/1ga", -- dilusha123
         "Student"
     ),
-    --dilusha123
     (
         "190564N",
         "Nirmal Sankalana",
-        "$2b$10$lDEh6keI4Wca2t7WRn.bmusfO7VmoDdQsU6e3w1toNrVvpMO5MeDi",
+        "$2b$10$lDEh6keI4Wca2t7WRn.bmusfO7VmoDdQsU6e3w1toNrVvpMO5MeDi", -- nirmal123
         "Student"
-    ) --nirmal123
-;
+    );
 
 
 -- table: requests
