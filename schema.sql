@@ -49,15 +49,6 @@ CREATE TABLE `replies` (
   CONSTRAINT `replies_ibfk_2` FOREIGN KEY (`req_id`) REFERENCES `requests` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 );
 
-
--- Table: staff_types
-DROP TABLE IF EXISTS `staff_types`;
-
-CREATE TABLE `staff_types` (
-  `type` varchar(30) DEFAULT NULL
-);
-
-
 -- Table: files
 DROP TABLE IF EXISTS `files`;
 
