@@ -2,11 +2,10 @@ import express from "express";
 import { authChecker } from "../util/middleware";
 import { getUserById, getRequestsForUser } from "../util/database";
 
-
 const handler = (pool) => {
     const dashboardRouter = express.Router();
 
-    dashboardRouter.get("/dashboard", authChecker, (req, res) => {
+    dashboardRouter.get("/dashboard", authChecker, async (req, res) => {
         // Show dashboard page
         const { userID } = req.session.user;
 
@@ -23,9 +22,7 @@ const handler = (pool) => {
                 requests,
             });
         }
-
     });
-
 
     return dashboardRouter;
 };
