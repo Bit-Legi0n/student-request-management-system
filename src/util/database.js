@@ -162,8 +162,8 @@ const getRepliesForRequest = async (pool, reqId) => {
                 rec.id,
                 rec.req_id,
                 rec.user_id,
-                req.datetime,
-                req.body
+                rec.datetime,
+                rec.body
             );
         });
         return results;
