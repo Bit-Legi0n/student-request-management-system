@@ -1,8 +1,7 @@
 import express from "express";
 import { sessionChecker } from "../util/middleware";
 import { sessionizeUser } from "../util/helpers";
-import {getUserById} from "../util/database";
-import User from "../models/user";
+import { getUserById } from "../util/database";
 
 const handler = (pool) => {
     const loginRouter = express.Router();
@@ -14,21 +13,19 @@ const handler = (pool) => {
     });
 
     // Post request for login
-    loginRouter.post("", sessionChecker, async(req, res) => {
-        
-        const {username , password} = req.body;
+    loginRouter.post("", sessionChecker, async (req, res) => {
+        const { userId, password } = req.body;
 
-        const user = await getUserById(pool,username);
+        const user = await getUserById(pool, userId);
 
-        if(!user) {
-            res.redirect('/login');
-        } else if(!user.validPassword(password)){
-            res.redirect('/login');
-        }else {
+        if (!user) {
+            res.redirect("/login");
+        } else if (!user.validPassword(password)) {
+            res.redirect("/login");
+        } else {
             req.session.user = sessionizeUser(user);
-            res.redirect('/dashboard');
+            res.redirect("/dashboard");
         }
-
     });
 
     return loginRouter;

@@ -1,7 +1,11 @@
 import express from "express";
 import { v4 as uuidv4 } from "uuid";
 import RequestModel from "../models/request";
-import { getRepliesForRequest, getRequest, saveRequest } from "../util/database";
+import {
+    getRepliesForRequest,
+    getRequest,
+    saveRequest,
+} from "../util/database";
 import { authChecker } from "../util/middleware";
 
 const handler = (pool) => {
