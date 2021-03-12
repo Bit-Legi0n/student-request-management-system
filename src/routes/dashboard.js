@@ -5,7 +5,7 @@ import { getUserById, getRequestsForUser } from "../util/database";
 const handler = (pool) => {
     const dashboardRouter = express.Router();
 
-    dashboardRouter.get("/dashboard", authChecker, async (req, res) => {
+    dashboardRouter.get("", authChecker, async (req, res) => {
         // Show dashboard page
         const { userId } = req.session.user;
 
