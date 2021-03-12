@@ -1,18 +1,31 @@
 import express from "express";
 import { authChecker } from "../util/middleware";
+import { getUserById, getRequestsForUser } from "../util/database";
+
 
 const handler = (pool) => {
     const dashboardRouter = express.Router();
 
-    dashboardRouter.get("/student", authChecker, (req, res) => {
+    dashboardRouter.get("/dashboard", authChecker, (req, res) => {
         // Show dashboard page
-        res.render("studentDashboard");
+        const { userID } = req.session.user;
+
+        const user = await getUserById(pool, userID);
+
+        const requests = await getRequestsForUser(pool, userID);
+
+        if (user.isStaff()) {
+            res.render("staffDashboard", {
+                requests,
+            });
+        } else {
+            res.render("studentDashboard", {
+                requests,
+            });
+        }
+
     });
 
-    dashboardRouter.get("/staff", authChecker, (req, res) => {
-        // Show dashboard page
-        res.render("staffDashboard");
-    });
 
     return dashboardRouter;
 };
