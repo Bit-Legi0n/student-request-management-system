@@ -52,9 +52,8 @@
          <table class="table table-striped">
             <thead>
                <tr>
-                  <th scope="col"></th>
-                  <th scope="col">Reciever Name</th>
-                  <th scope="col">Subject</th>
+                  <th scope="col">Staff Member</th>
+                  <th scope="col">Request Type</th>
                   <th scope="col">
                      <div class="dropdown show">
                         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -72,34 +71,14 @@
                </tr>
             </thead>
             <tbody>
+              <% requests.forEach(function(request) { %>
                <tr>
-                  <th scope="row"> <input type="checkbox" aria-label="Checkbox for following text input"></th>
-                  <td>Prof. D.C.Perera</td>
-                  <td>Reqesting Moodle Acsses</td>
-                  <td><span class="badge badge-warning">pending</span></td>
-                  <td>2021/03/07</td>
+                  <td><%= request.staff_name %></td>
+                  <td><a class="nav-link" href="/request/<%= request.id %>"><%= request.type %></a></td>
+                  <td><span class="badge badge-warning"><%= request.status %></span></td>
+                  <td><%= request.datetime %></td>
                </tr>
-               <tr>
-                  <th scope="row"> <input type="checkbox" aria-label="Checkbox for following text input"></th>
-                  <td>Prof. D.C.Perera</td>
-                  <td>Reqesting Password for Acsses</td>
-                  <td><span class="badge badge-danger">rejected</span></td>
-                  <td>2021/03/07</td>
-               </tr>
-               <tr>
-                  <th scope="row"> <input type="checkbox" aria-label="Checkbox for following text input"></th>
-                  <td>Prof. D.W. William</td>
-                  <td>Reqesting Password for Acsses</td>
-                  <td><span class="badge badge-success">aproved</span></td>
-                  <td>2021/03/01</td>
-                  </tr
-               <tr>
-                  <th scope="row"> <input type="checkbox" aria-label="Checkbox for following text input"></th>
-                  <td>Prof. B.C.James</td>
-                  <td>Reqesting Leave</td>
-                  <td><span class="badge badge-success">aproved</span></td>
-                  <td>2021/02/21</td>
-               </tr>
+           <% }); %>
             </tbody>
          </table>
          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

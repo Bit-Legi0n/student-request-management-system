@@ -88,6 +88,7 @@ const getRequestsForStudent = async (pool, id) => {
             pool,
             `SELECT
             requests.type,
+            requests.id,
             staff.name as staff_name,
             requests.status,
             requests.datetime
