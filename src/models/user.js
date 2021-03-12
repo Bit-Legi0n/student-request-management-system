@@ -12,6 +12,10 @@ class User{
     validPassword(passwordToTest){
         return bcrypt.compareSync(passwordToTest, this.passwordHash);
     }
+
+    isStaff() {
+        return this.type === "Staff";
+    }
     
 }
 
