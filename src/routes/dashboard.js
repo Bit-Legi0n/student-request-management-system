@@ -7,11 +7,11 @@ const handler = (pool) => {
 
     dashboardRouter.get("/dashboard", authChecker, async (req, res) => {
         // Show dashboard page
-        const { userID } = req.session.user;
+        const { userId } = req.session.user;
 
-        const user = await getUserById(pool, userID);
+        const user = await getUserById(pool, userId);
 
-        const requests = await getRequestsForUser(pool, userID);
+        const requests = await getRequestsForUser(pool, userId);
 
         if (user.isStaff()) {
             res.render("staffDashboard", {
