@@ -7,17 +7,7 @@
    
    </head>
    <body>
-      <nav class="navbar navbar-dark bg-dark justify-content-between">   
-         <div><a class="navbar-brand" href="#">
-            <img src="/img/mail.png" width="30" height="30" alt="">
-       </a>
-       <a class="navbar-brand" href="#">Dashboard</a>
-      </div>
-         <div>
-            
-           <a class="nav-link" href="/logout"><%= user.name %> | Log out</a>
-         </div>
-       </nav>
+      <%- include('./partials/navbar'); %>
       <div class="container-fluid">
          <br/>
          <!-- search bar -->
