@@ -13,7 +13,7 @@ const queryPromise = (pool, sql, values) =>
     });
 
 // getUserById
-// Get User object given username
+// Get User object given userId
 const getUserById = async (pool, id) => {
     let results;
     try {
@@ -21,7 +21,7 @@ const getUserById = async (pool, id) => {
             id,
         ]);
     } catch (error) {
-        throw "Databse Error";
+        throw "Database Error";
     }
 
     if (results.length) {
