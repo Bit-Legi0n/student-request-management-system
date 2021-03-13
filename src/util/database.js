@@ -178,7 +178,16 @@ const getRepliesForRequest = async (pool, reqId) => {
     try {
         results = await queryPromise(
             pool,
-            "SELECT * FROM replies WHERE req_id=?;",
+            `SELECT
+            replies.id,
+            replies.req_id,
+            replies.user_id,
+            replies.datetime,
+            replies.body,
+            files.path AS attachment
+            FROM replies
+            LEFT JOIN files ON files.reply_id = replies.id
+            WHERE replies.req_id = ?;`,
             [reqId]
         );
     } catch (error) {
@@ -191,7 +200,8 @@ const getRepliesForRequest = async (pool, reqId) => {
                 rec.req_id,
                 rec.user_id,
                 rec.datetime,
-                rec.body
+                rec.body,
+                rec.attachment
             );
         });
         return results;
