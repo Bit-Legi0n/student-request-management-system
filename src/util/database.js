@@ -138,7 +138,18 @@ const getRequest = async (pool, id) => {
     try {
         results = await queryPromise(
             pool,
-            "SELECT * FROM requests WHERE id=?;",
+            `SELECT 
+            requests.id, 
+            requests.student_id,
+            requests.staff_id,
+            requests.datetime,
+            requests.status,
+            requests.type,
+            requests.body,
+            files.path AS attachment
+            FROM requests
+            LEFT JOIN files ON files.req_id = requests.id 
+            WHERE requests.id = ?;`,
             [id]
         );
     } catch (error) {
@@ -153,7 +164,8 @@ const getRequest = async (pool, id) => {
             results[0].datetime,
             results[0].status,
             results[0].type,
-            results[0].body
+            results[0].body,
+            results[0].attachment
         );
     }
     return null;
