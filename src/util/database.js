@@ -111,9 +111,27 @@ const saveRequest = async (pool, request) => {
     try {
         await queryPromise(
             pool,
-            "INSERT INTO requests (id, student_id, staff_id, datetime, status, type, body) VALUES (?,?,?,?,?,?,?);",
-            [Object.values(request)]
+            `INSERT INTO requests (id, student_id, staff_id, datetime, status, type, body)
+            SELECT ?,?,staff.id,?,?,?,?
+            FROM users as staff
+            WHERE staff.name=?;`,
+            [
+                request.id,
+                request.student_id,
+                request.datetime,
+                request.status,
+                request.type,
+                request.body,
+                request.staff_name,
+            ]
         );
+        if (request.file) {
+            await queryPromise(
+                pool,
+                "INSERT INTO files (req_id, path) VALUES(?,?)",
+                [request.id, request.filepath]
+            );
+        }
     } catch (error) {
         throw "Database Error";
     }
