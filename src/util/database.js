@@ -63,7 +63,6 @@ const getRequestsForStaff = async (pool, id) => {
         results = await queryPromise(
             pool,
             `SELECT
-            requests.id
             requests.type,
             requests.id,
             student.id as student_id,
@@ -89,7 +88,6 @@ const getRequestsForStudent = async (pool, id) => {
         results = await queryPromise(
             pool,
             `SELECT
-            requests.id
             requests.type,
             requests.id,
             requests.student_id,
