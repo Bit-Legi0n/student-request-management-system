@@ -1,13 +1,12 @@
 import express from "express";
 import { v4 as uuidv4 } from "uuid";
-import RequestModel from "../models/request";
+import upload from "../config/storage";
 import {
     getRepliesForRequest,
     getRequest,
-    saveRequest,
     getUserById,
+    saveRequest,
 } from "../util/database";
-
 import { authChecker } from "../util/middleware";
 
 const handler = (pool) => {
@@ -37,23 +36,29 @@ const handler = (pool) => {
         }
     });
 
-    requestRouter.post("", authChecker, async (req, res) => {
+    requestRouter.post("", authChecker, upload.any(), async (req, res) => {
         // Save request
-        const { staff_id, type, body } = req.body;
+        const { staff_name, type, body } = req.body;
         const student_id = req.session.user.userId;
 
-        const request = RequestModel(
-            uuidv4(),
+        const request = {
+            id: uuidv4(),
             student_id,
-            staff_id,
-            new Date(),
-            "pending",
+            staff_name,
+            datetime: new Date(),
+            status: "pending",
             type,
-            body
-        );
+            body,
+            filepath: req.files.length > 0 ? req.files[0].filename : undefined,
+        };
 
-        await saveRequest(pool, request);
-        res.redirect(`/request/${request.id}`);
+        try {
+            await saveRequest(pool, request);
+            res.redirect(`/request/${request.id}`);
+        } catch (err) {
+            console.log(err);
+            res.redirect("/dashboard");
+        }
     });
 
     return requestRouter;
