@@ -64,6 +64,7 @@ const getRequestsForStaff = async (pool, id) => {
             pool,
             `SELECT
             requests.type,
+            requests.id,
             student.id as student_id,
             student.name as student_name,
             requests.status,
@@ -89,6 +90,7 @@ const getRequestsForStudent = async (pool, id) => {
             `SELECT
             requests.type,
             requests.id,
+            requests.student_id,
             staff.name as staff_name,
             requests.status,
             requests.datetime

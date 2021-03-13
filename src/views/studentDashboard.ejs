@@ -9,7 +9,7 @@
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
          <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                 <img src="/views/img/mail.png" width="30" height="30" alt="">
+                 <img src="/img/mail.png" width="30" height="30" alt="">
             </a>
             <a class="navbar-brand" href="#">Student Dashboard</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,10 +18,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                <ul class="navbar-nav">
                   <li class="nav-item">
-                     <a class="nav-link" href="#">Replies</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="#">Log out</a>
+                     <a class="nav-link" href="/logout">Log out</a>
                   </li>
                </ul>
             </div>
@@ -40,9 +37,6 @@
                </div>
             </div>
             <div class="col-sm-6">
-               <button type="button" class="btn btn-outline-danger">Trash</button> 
-               <button type="button" class="btn btn-outline-info">Mark As Read</button> 
-               <button type="button" class="btn btn-outline-warning">Archive</button> 
             </div>
             <div class="col-sm-2">
                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Compose New Request</button>
@@ -74,7 +68,7 @@
               <% requests.forEach(function(request) { %>
                <tr>
                   <td><%= request.staff_name %></td>
-                  <td><a class="nav-link" href="/request/<%= request.id %>"><%= request.type %></a></td>
+                  <td><a href="/request/<%= request.id %>"><%= request.type %></a></td>
                   <td><span class="badge badge-warning"><%= request.status %></span></td>
                   <td><%= request.datetime %></td>
                </tr>
@@ -136,6 +130,7 @@
       <!-- Optional JavaScript; choose one of the two! -->
       <!-- Option 1: Bootstrap Bundle with Popper -->
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+      <script src="/js/test.js" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
    </body>
