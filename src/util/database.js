@@ -55,37 +55,51 @@ const getUsername = async (pool, id) => {
     return null;
 };
 
-// getStaff
-// Get relevant staff members for new request form
-
-// getRequestsForUser
-// Get list of requests for a given user
-const getRequestsForUser = async (pool, id) => {
+//getRequestsForStaff
+//Get a list of requests related to a staff member
+const getRequestsForStaff = async (pool, id) => {
     let results;
     try {
         results = await queryPromise(
             pool,
-            "SELECT * FROM requests WHERE student_id=? OR staff_id=?;",
-            [id, id]
+            `SELECT
+            requests.type,
+            student.id as student_id,
+            student.name as student_name,
+            requests.status,
+            requests.datetime
+            FROM requests
+            INNER JOIN users AS student ON student.id = requests.student_id
+            WHERE requests.staff_id = ?;`,
+            [id]
         );
     } catch (error) {
         throw "Database Error";
     }
-    if (results.length) {
-        results.forEach((rec, index, arr) => {
-            arr[index] = new RequestModel(
-                rec.id,
-                rec.student_id,
-                rec.staff_id,
-                rec.datetime,
-                rec.status,
-                rec.type,
-                rec.body
-            );
-        });
-        return results;
+    return results;
+};
+
+//getRequestsForStaff
+//Get a list of requests related to a staff member
+const getRequestsForStudent = async (pool, id) => {
+    let results;
+    try {
+        results = await queryPromise(
+            pool,
+            `SELECT
+            requests.type,
+            staff.name as staff_name,
+            requests.status,
+            requests.datetime
+            FROM requests
+            INNER JOIN users AS staff ON staff.id = requests.staff_id
+            WHERE requests.student_id = ?;`,
+            [id]
+        );
+    } catch (error) {
+        throw "Database Error";
     }
-    return null;
+    return results;
 };
 
 // saveRequest
@@ -189,7 +203,8 @@ const saveReply = async (pool, reply) => {
 export {
     getUserById,
     getUsername,
-    getRequestsForUser,
+    getRequestsForStudent,
+    getRequestsForStaff,
     saveRequest,
     setRequestStatus,
     getRequest,
