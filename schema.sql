@@ -53,11 +53,11 @@ CREATE TABLE `replies` (
 DROP TABLE IF EXISTS `files`;
 
 CREATE TABLE `files` (
-  `id` bigint NOT NULL,
   `req_id` varchar(36) DEFAULT NULL,
   `path` varchar(255) DEFAULT NULL,
-  `type` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`id`),
+  `reply_id` varchar(36) DEFAULT NULL,
   KEY `req_id` (`req_id`),
-  CONSTRAINT `files_ibfk_1` FOREIGN KEY (`req_id`) REFERENCES `requests` (`id`)
+  KEY `files_ibfk_2` (`reply_id`),
+  CONSTRAINT `files_ibfk_1` FOREIGN KEY (`req_id`) REFERENCES `requests` (`id`),
+  CONSTRAINT `files_ibfk_2` FOREIGN KEY (`reply_id`) REFERENCES `replies` (`id`)
 );
