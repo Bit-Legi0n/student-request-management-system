@@ -1,70 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
-      crossorigin="anonymous"
-    />
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          <img src="/views/img/mail.png" width="30" height="30" alt="" />
-        </a>
-        <a class="navbar-brand" href="#">Dashboard</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Log out</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
+</head>
+
+<body>
+  <%- include('./partials/navbar'); %>
 
     <div class="container-fluid">
       <br />
       <!-- search bar -->
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-5">
           <div class="input-group mb-3">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Recipient's username"
-              aria-label="Recipient's username"
-              aria-describedby="basic-addon2"
-            />
+            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
+              aria-describedby="basic-addon2" />
             <div class="input-group-append">
               <button class="btn btn-outline-secondary" type="button">
-                Search
+                Search By Name
+              </button>
+              <button class="btn btn-outline-secondary" type="button">
+                Search By Index
               </button>
             </div>
           </div>
         </div>
-        <div class="col-sm-6">
-          <button type="button" class="btn btn-outline-danger">Trash</button>
-          <button type="button" class="btn btn-outline-info">
-            Mark As Read
-          </button>
-          <button type="button" class="btn btn-outline-warning">Archive</button>
-        </div>
+
       </div>
       <br />
       <table class="table table-striped">
@@ -76,15 +41,8 @@
             <th scope="col">Name</th>
             <th scope="col">
               <div class="dropdown show">
-                <a
-                  class="btn btn-secondary dropdown-toggle"
-                  href="#"
-                  role="button"
-                  id="dropdownMenuLink"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Status
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -101,10 +59,7 @@
         <tbody>
           <tr>
             <th scope="row">
-              <input
-                type="checkbox"
-                aria-label="Checkbox for following text input"
-              />
+              <input type="checkbox" aria-label="Checkbox for following text input" />
             </th>
             <td>Dealdline</td>
             <td>190564N</td>
@@ -114,10 +69,7 @@
           </tr>
           <tr>
             <th scope="row">
-              <input
-                type="checkbox"
-                aria-label="Checkbox for following text input"
-              />
+              <input type="checkbox" aria-label="Checkbox for following text input" />
             </th>
             <td>Subject</td>
             <td>180564E</td>
@@ -127,10 +79,7 @@
           </tr>
           <tr>
             <th scope="row">
-              <input
-                type="checkbox"
-                aria-label="Checkbox for following text input"
-              />
+              <input type="checkbox" aria-label="Checkbox for following text input" />
             </th>
             <td>Dealdline</td>
             <td>190222K</td>
@@ -140,10 +89,7 @@
           </tr>
           <tr>
             <th scope="row">
-              <input
-                type="checkbox"
-                aria-label="Checkbox for following text input"
-              />
+              <input type="checkbox" aria-label="Checkbox for following text input" />
             </th>
             <td>Error</td>
             <td>180054N</td>
@@ -157,20 +103,14 @@
 
 
 
-    
+
     <!-- Optional JavaScript; choose one of the two! -->
     <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+      crossorigin="anonymous"></script>
+</body>
+
 </html>

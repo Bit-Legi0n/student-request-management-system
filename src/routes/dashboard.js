@@ -19,13 +19,13 @@ const handler = (pool) => {
             const requests = await getRequestsForStaff(pool, userId);
             res.render("staffDashboard", {
                 requests,
-                user
+                user,
             });
         } else {
             const requests = await getRequestsForStudent(pool, userId);
             res.render("studentDashboard", {
                 requests,
-                user
+                user,
             });
         }
     });

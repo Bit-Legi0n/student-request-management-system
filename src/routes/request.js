@@ -5,7 +5,9 @@ import {
     getRepliesForRequest,
     getRequest,
     saveRequest,
+    getUserById,
 } from "../util/database";
+
 import { authChecker } from "../util/middleware";
 
 const handler = (pool) => {
@@ -15,6 +17,7 @@ const handler = (pool) => {
         // Show request page
         const { requestId } = req.params;
         const { userId } = req.session.user;
+        const user = await getUserById(pool, userId);
 
         const request = await getRequest(pool, requestId);
 
@@ -24,6 +27,7 @@ const handler = (pool) => {
                 res.render("request", {
                     request,
                     replies,
+                    user,
                 });
             } else {
                 res.redirect("/dashboard");
