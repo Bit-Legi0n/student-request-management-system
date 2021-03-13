@@ -1,6 +1,10 @@
 import express from "express";
 import { authChecker } from "../util/middleware";
-import { getUserById, getRequestsForUser } from "../util/database";
+import {
+    getUserById,
+    getRequestsForStaff,
+    getRequestsForStudent,
+} from "../util/database";
 
 const handler = (pool) => {
     const dashboardRouter = express.Router();
@@ -11,13 +15,13 @@ const handler = (pool) => {
 
         const user = await getUserById(pool, userId);
 
-        const requests = await getRequestsForUser(pool, userId);
-
         if (user.isStaff()) {
+            const requests = await getRequestsForStaff(pool, userId);
             res.render("staffDashboard", {
                 requests,
             });
         } else {
+            const requests = await getRequestsForStudent(pool, userId);
             res.render("studentDashboard", {
                 requests,
             });
