@@ -21,13 +21,13 @@ const handler = (pool) => {
             const reqId = req.params.requestId;
             const userId = req.session.user.userId;
             const { body } = req.body;
-            const reply = Reply(
+            const reply = new Reply(
                 uuidv4(),
                 reqId,
                 userId,
                 new Date(),
                 body,
-                req.files.length > 0 ? req.files[0].filename : undefined
+                req.files ? req.files[0].filename : undefined
             );
 
             const request = await getRequest(pool, reqId);

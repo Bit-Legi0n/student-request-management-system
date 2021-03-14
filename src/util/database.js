@@ -253,7 +253,7 @@ const saveReply = async (pool, reply) => {
         await queryPromise(
             pool,
             "INSERT INTO replies (id, req_id, user_id, datetime, body) VALUES (?,?,?,?,?);",
-            [Object.values(reply)]
+            [reply.id, reply.req_id, reply.user_id, reply.datetime, reply.body]
         );
         if (reply.attachment) {
             await queryPromise(
