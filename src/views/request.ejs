@@ -16,12 +16,9 @@
 <body>
     <%- include('./partials/navbar'); %>
         <div class="container">
-
-
             <div class="row">
                 <div class="conversation-wrap col-lg-2">
                 </div>
-
                 <div class="message-wrap col-lg-8">
                     <div class="msg-wrap">
                         <br/>
@@ -65,6 +62,10 @@
                                     quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
                                     Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
                                     pariatur.</small>
+                                    <br/>
+                                    <a href="/upload/reportimage.jpg" download="fileDownload">
+                                        medical-report.png
+                                      </a>
                             </div>
                         </div>
                         <div class="media msg">
@@ -85,57 +86,43 @@
                                 <small class="col-lg-10">Sure sir. I will sen it.</small>
                             </div>
                         </div>
-
                     </div>
 <br/>
                     <% if(user.type == 'Student'){ %>
                         <form action="/reply/<%= request.id %>" method="post" enctype="multipart/form-data">
                             <div class="send-wrap ">
-    
                                 <textarea class="form-control send-message" rows="3" name="body" id="replybody"
                                     placeholder="Write a reply..."></textarea>
-    
-    
                             </div>
-                           
-                                
                                         <div class="input-group">
                                            <div class="custom-file">
                                                <input type="file" class="custom-file-input" id="fileInput" aria-describedby="fileInput" name="file">
                                                <label class="custom-file-label" for="fileInput">Choose file</label>
                                            </div>
-                                      
-                                     
                                     <button type="submit" class="col-lg-3 btn btn-primary" data-toggle="modal"
                                         data-target="#exampleModal" data-whatever="@getbootstrap">Send Reply</button>
                                 </div>
-                       
                         </form>
+
                       <% } %>
                       <% if(user.type == 'Staff'){ %>  
                         <form action="/reply/<%= request.id %>" method="post">
                             <div class="send-wrap ">
-                                <textarea class="form-control send-message" rows="3" name="body" id="replybody"
+                                <textarea class="form-control send-message" rows="3" name="body" id="rbody"
                                     placeholder="Write a reply..."></textarea>
                             </div>
                             <div class="btn-panel">
                                 <div class="input-group mb-1">
-                                    <button type="submit" class="col-lg-3 btn btn-primary" data-toggle="modal"
-                                        data-target="#exampleModal" data-whatever="@getbootstrap">Send Reply</button>
+                                    <button type="submit" class="col-lg-3 btn btn-primary">Send Reply</button>
                                 </div>
                             </div>
                         </form>
                         
                      <% } %>
-
-                   
                 </div>
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
-   
         <script src="/js/requestUpload.js" crossorigin="anonymous"></script>
-
 </body>
-
 </html>
