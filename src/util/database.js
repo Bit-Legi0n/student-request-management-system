@@ -1,6 +1,6 @@
-import User from "../models/user";
-import RequestModel from "../models/request";
 import Reply from "../models/reply";
+import RequestModel from "../models/request";
+import User from "../models/user";
 
 // Database functionality
 
@@ -255,6 +255,13 @@ const saveReply = async (pool, reply) => {
             "INSERT INTO replies (id, req_id, user_id, datetime, body) VALUES (?,?,?,?,?);",
             [Object.values(reply)]
         );
+        if (reply.attachment) {
+            await queryPromise(
+                pool,
+                "INSERT INTO files (req_id, reply_id, path) VALUES(?,?,?);",
+                [reply.req_id, reply.id, reply.attachment]
+            );
+        }
     } catch (error) {
         console.log(error);
     }
