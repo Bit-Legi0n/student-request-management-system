@@ -142,7 +142,7 @@ const saveRequest = async (pool, request) => {
                 request.staff_name,
             ]
         );
-        if (request.file) {
+        if (request.filepath) {
             await queryPromise(
                 pool,
                 "INSERT INTO files (req_id, path) VALUES(?,?)",
