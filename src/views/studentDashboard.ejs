@@ -12,22 +12,15 @@
          <br/>
          <!-- search bar -->
          <div class="row">
-            <div class="col-sm-4">
-               <div class="input-group mb-3">
-                  <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                  <div class="input-group-append">
-                     <button class="btn btn-outline-secondary" type="button">Search</button>
-                  </div>
-               </div>
-            </div>
-            <div class="col-sm-6">
-            </div>
-            <div class="col-sm-2">
-               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Compose New Request</button>
-            </div>
+             <div class="col-sm-3">
+               <input type="text" id="filter-by-username" class="form-control" placeholder="Search by User Name"
+                 aria-label="Search by User Name" aria-describedby="basic-addon2" />
+   
+          
+           </div>
          </div>
          <br/>
-         <table class="table table-striped">
+         <table class="table table-striped" id="table">
             <thead>
                <tr>
                   <th scope="col">Staff Member</th>
@@ -51,7 +44,7 @@
             <tbody>
               <% requests.forEach(function(request) { %>
                <tr>
-                  <td><%= request.staff_name %></td>
+                  <td class="col1"><%= request.staff_name %></td>
                   <td><a href="/request/<%= request.id %>"><%= request.type %></a></td>
                   <td>
                      <% switch(request.status) {
@@ -127,7 +120,7 @@
       <!-- Optional JavaScript; choose one of the two! -->
       <!-- Option 1: Bootstrap Bundle with Popper -->
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
-      <script src="/js/test.js" crossorigin="anonymous"></script>
+      <script src="/js/studentDashboardFiltering.js" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
    </body>
