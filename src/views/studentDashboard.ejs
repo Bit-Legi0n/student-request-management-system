@@ -15,10 +15,14 @@
              <div class="col-sm-3">
                <input type="text" id="filter-by-username" class="form-control" placeholder="Search by User Name"
                  aria-label="Search by User Name" aria-describedby="basic-addon2" />
-   
-          
            </div>
+           <div class="col-sm-7">
          </div>
+         <div class="col-sm-2">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Compose New Request</button>
+         </div>
+         </div>
+         <!-- end search bar -->
          <br/>
          <table class="table table-striped" id="table">
             <thead>
@@ -75,7 +79,7 @@
                      </button>
                   </div>
                   <div class="modal-body">
-                     <form action="/request" method="post">
+                     <form action="/request" method="post" enctype="multipart/form-data">
                         <div class="form-group row" required>
                            <div class="col-sm-1">
                               <label for="colFormLabel" class="col-sm-2 col-form-label">To</label>
