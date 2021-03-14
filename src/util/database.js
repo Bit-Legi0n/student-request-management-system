@@ -55,50 +55,67 @@ const getUsername = async (pool, id) => {
     return null;
 };
 
-//getRequestsForStaff
-//Get a list of requests related to a staff member
-const getRequestsForStaff = async (pool, id) => {
+// getRequestsForStaff
+// Get a list of requests related to a staff member
+const getRequestsForStaff = async (pool, id, status, type) => {
     let results;
     try {
-        results = await queryPromise(
-            pool,
-            `SELECT
-            requests.type,
+        let sqlQuery = `SELECT
             requests.id,
+            requests.type,
             student.id as student_id,
             student.name as student_name,
             requests.status,
-            requests.datetime
+            requests.datetime,
+            requests.body
             FROM requests
             INNER JOIN users AS student ON student.id = requests.student_id
-            WHERE requests.staff_id = ?;`,
-            [id]
-        );
+            WHERE requests.staff_id = ?`;
+        let parameters = [id];
+        if (status) {
+            sqlQuery += " AND requests.status = ?";
+            parameters.push(status);
+        }
+        if (type) {
+            sqlQuery += " AND requests.type = ?";
+            parameters.push(type);
+        }
+        sqlQuery += ";";
+
+        results = await queryPromise(pool, sqlQuery, parameters);
     } catch (error) {
         throw "Database Error";
     }
     return results;
 };
 
-//getRequestsForStaff
-//Get a list of requests related to a staff member
-const getRequestsForStudent = async (pool, id) => {
+// getRequestsForStudent
+// Get a list of requests related to a student
+const getRequestsForStudent = async (pool, id, status, type) => {
     let results;
     try {
-        results = await queryPromise(
-            pool,
-            `SELECT
-            requests.type,
+        let sqlQuery = `SELECT
             requests.id,
-            requests.student_id,
+            requests.type,
             staff.name as staff_name,
             requests.status,
-            requests.datetime
+            requests.datetime,
+            requests.body
             FROM requests
             INNER JOIN users AS staff ON staff.id = requests.staff_id
-            WHERE requests.student_id = ?;`,
-            [id]
-        );
+            WHERE requests.student_id = ?`;
+        let parameters = [id];
+        if (status) {
+            sqlQuery += " AND requests.status = ?";
+            parameters.push(status);
+        }
+        if (type) {
+            sqlQuery += " AND requests.type = ?";
+            parameters.push(type);
+        }
+        sqlQuery += ";";
+
+        results = await queryPromise(pool, sqlQuery, parameters);
     } catch (error) {
         throw "Database Error";
     }
