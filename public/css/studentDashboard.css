@@ -1,0 +1,19 @@
+#customFile .custom-file-input:lang(en)::after {
+    content: "Select file...";
+  }
+  
+  #customFile .custom-file-input:lang(en)::before {
+    content: "Click me";
+  }
+  
+  /*when a value is selected, this class removes the content */
+  .custom-file-input.selected:lang(en)::after {
+    content: "" !important;
+  }
+  
+  .custom-file {
+    overflow: hidden;
+  }
+  .custom-file-input {
+    white-space: nowrap;
+  }
