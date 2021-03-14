@@ -56,7 +56,7 @@ const handler = (pool) => {
         const userId = req.session.user.userId;
 
         const user = await getUserById(pool, userId);
-        if (user.type == "staff") {
+        if (user.isStaff()) {
             const request = await getRequest(pool, reqId);
             if (request && request.staff_id == userId) {
                 await setRequestStatus(pool, reqId, req.body.reqStatus);

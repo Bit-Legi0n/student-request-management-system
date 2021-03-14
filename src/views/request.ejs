@@ -20,7 +20,7 @@
                 <div class="message-wrap col-lg-8">
                     <div class="msg-wrap">
                         <br />
-                        <% if(user.type=='Staff' ){ %>
+                        <% if (user.isStaff()){ %>
                             <div class="card bg-dark text-white">
                                 <div class="card-header">
                                     Select Request Status
@@ -30,14 +30,14 @@
                                     <form action="/reply/<%= request.id %>/status" method="post">
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="reqStatus"
-                                                id="reqStatus1" value="Accept">
+                                                id="reqStatus1" value="approved">
                                             <label class="form-check-label" for="reqStatus1">
                                                 Accept
                                             </label>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="reqStatus"
-                                                id="reqStatus2" value="Decline">
+                                                id="reqStatus2" value="declined">
                                             <label class="form-check-label" for="reqStatus2">
                                                 Decline
                                             </label>
@@ -48,54 +48,39 @@
                                 </div>
                             </div>
                             <br />
-                            <% } %>
+                        <% } %>
 
 
-                                <div class="media msg">
-                                    <div class="media-body">
-
-                                        <small class="pull-right time"><i class="fa fa-clock-o"></i> 12:10am</small>
-
-                                        <h5 class="media-heading">Nimantha Cooray</h5>
-                                        <small class="col-lg-10">Dear Sir, Lorem ipsum dolor sit amet, consectetur
-                                            adipiscing elit,
-                                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                                            ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat.
-                                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-                                            eu fugiat nulla
-                                            pariatur.</small>
+                        <% replies.forEach(function(reply) { %>
+                            <div class="media msg">
+                                <div class="media-body">
+                                
+                                    <small class="pull-right time"><i class="fa fa-clock-o"></i> <%= reply.datetime %></small>
+                                    <% if (reply.attachment) { %>
                                         <br />
-                                        <a href="/upload/reportimage.jpg" download="fileDownload">
-                                            medical-report.png
-                                        </a>
-                                    </div>
+                                        <a href="/upload/<%= reply.attachment %>" download>
+                                            <%= reply.attachment.substring(37) %></a>
+                                    <% } %>
+                                    <h5 class="media-heading"><%= reply.name %></h5>
+                                    <small class="col-lg-10"><%= reply.body %></small>
                                 </div>
-                                <div class="media msg">
-                                    <div class="media-body">
-                                        <small class="pull-right time"><i class="fa fa-clock-o"></i> 12:10am</small>
-
-                                        <h5 class="media-heading">Bimsara Bodaragama</h5>
-                                        <small class="col-lg-10">Yes. Your application is ready. Check your moodle. Send
-                                            me a
-                                            screenshot to verify details.</small>
-                                    </div>
-                                </div>
-
-                                <div class="media msg">
-                                    <div class="media-body">
-                                        <small class="pull-right time"><i class="fa fa-clock-o"></i> 12:10am</small>
-                                        <h5 class="media-heading">Nimantha Cooray</h5>
-
-                                        <small class="col-lg-10">Sure sir. I will sen it.</small>
-                                    </div>
-                                </div>
+                            </div>
+                        <% }); %>
                     </div>
                     <br />
-                    <% if(user.type=='Student' ){ %>
-
-
+                    <% if(user.isStaff()){ %>
+                        <form action="/reply/<%= request.id %>" method="post">
+                            <div class="send-wrap ">
+                                <textarea class="form-control send-message" rows="3" name="body" id="rbody"
+                                    placeholder="Write a reply..."></textarea>
+                            </div>
+                            <div class="btn-panel">
+                                <div class="input-group mb-1">
+                                    <button type="submit" class="col-lg-3 btn btn-primary">Send Reply</button>
+                                </div>
+                            </div>
+                        </form>
+                    <% } else { %>
                         <form action="/reply/<%= request.id %>" method="post" enctype="multipart/form-data">
                             <div class="send-wrap ">
                                 <textarea class="form-control send-message" rows="3" name="body" id="rbody"
@@ -112,25 +97,11 @@
                                 </div>
                             </div>
                         </form>
-
-                        <% } %>
-                            <% if(user.type=='Staff' ){ %>
-                                <form action="/reply/<%= request.id %>" method="post">
-                                    <div class="send-wrap ">
-                                        <textarea class="form-control send-message" rows="3" name="body" id="rbody"
-                                            placeholder="Write a reply..."></textarea>
-                                    </div>
-                                    <div class="btn-panel">
-                                        <div class="input-group mb-1">
-                                            <button type="submit" class="col-lg-3 btn btn-primary">Send Reply</button>
-                                        </div>
-                                    </div>
-                                </form>
-                                <% } %>
+                        <script src="/js/requestUpload.js" crossorigin="anonymous"></script>
+                    <% } %>
                 </div>
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
-        <script src="/js/requestUpload.js" crossorigin="anonymous"></script>
 </body>
 </html>

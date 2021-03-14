@@ -1,4 +1,3 @@
-import Reply from "../models/reply";
 import RequestModel from "../models/request";
 import User from "../models/user";
 
@@ -217,32 +216,20 @@ const getRepliesForRequest = async (pool, reqId) => {
             `SELECT
             replies.id,
             replies.req_id,
-            replies.user_id,
+            users.name,
             replies.datetime,
             replies.body,
             files.path AS attachment
             FROM replies
             LEFT JOIN files ON files.reply_id = replies.id
+            INNER JOIN users ON users.id=replies.user_id
             WHERE replies.req_id = ?;`,
             [reqId]
         );
     } catch (error) {
         throw "Database Error";
     }
-    if (results.length) {
-        results.forEach((rec, index, arr) => {
-            arr[index] = new Reply(
-                rec.id,
-                rec.req_id,
-                rec.user_id,
-                rec.datetime,
-                rec.body,
-                rec.attachment
-            );
-        });
-        return results;
-    }
-    return null;
+    return results;
 };
 
 // saveReply
