@@ -35,10 +35,23 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th scope="col"></th>
-            <th scope="col">Type</th>
             <th scope="col">Index</th>
             <th scope="col">Name</th>
+            <th scope="col">
+              <div class="dropdown show">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Type
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <a class="dropdown-item" href="/">--All--</a>
+                  <a class="dropdown-item" href="?type=Add/Drop">Add/Drop</a>
+                  <a class="dropdown-item" href="?type=Dealdline Extention">Dealdline Extention</a>
+                  <a class="dropdown-item" href="?type=Apply for Retake Exam">Apply for Retake Exam</a>
+                  <a class="dropdown-item" href="?type=Other">Other</a>
+                </div>
+              </div>
+            </th>
             <th scope="col">
               <div class="dropdown show">
                 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
@@ -57,46 +70,28 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">
-              <input type="checkbox" aria-label="Checkbox for following text input" />
-            </th>
-            <td>Dealdline</td>
-            <td>190564N</td>
-            <td>Nirmal</td>
-            <td><span class="badge badge-warning">pending</span></td>
-            <td>2021/03/07</td>
-          </tr>
-          <tr>
-            <th scope="row">
-              <input type="checkbox" aria-label="Checkbox for following text input" />
-            </th>
-            <td>Subject</td>
-            <td>180564E</td>
-            <td>Muditha</td>
-            <td><span class="badge badge-success">approved</span></td>
-            <td>2021/03/10</td>
-          </tr>
-          <tr>
-            <th scope="row">
-              <input type="checkbox" aria-label="Checkbox for following text input" />
-            </th>
-            <td>Dealdline</td>
-            <td>190222K</td>
-            <td>Kasun</td>
-            <td><span class="badge badge-warning">pending</span></td>
-            <td>2021/02/28</td>
-          </tr>
-          <tr>
-            <th scope="row">
-              <input type="checkbox" aria-label="Checkbox for following text input" />
-            </th>
-            <td>Error</td>
-            <td>180054N</td>
-            <td>Nimantha</td>
-            <td><span class="badge badge-warning">pending</span></td>
-            <td>2021/03/07</td>
-          </tr>
+          <% requests.forEach(function(request) { %>
+            <tr>
+              <td><%= request.student_id %></td>
+              <td><%= request.student_name %></td>
+              <td><a href="/request/<%= request.id %>"><%= request.type %></a></td>
+              <td>
+                 <% switch(request.status) {
+                    case 'pending' : %>
+                    <span class="badge badge-warning"><%= request.status %></span>
+                    <% break;
+                    case 'approved' : %>
+                    <span class="badge badge-success"><%= request.status %></span>
+                    <% break;
+                    case 'declined' : %>
+                    <span class="badge badge-danger"><%= request.status %></span>
+                    <% break;
+                    }
+                    %>
+              </td>
+              <td><%= request.datetime %></td>
+           </tr>
+       <% }); %>
         </tbody>
       </table>
     </div>

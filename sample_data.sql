@@ -68,8 +68,16 @@ VALUES (
         "rejected",
         "OTHER",
         "Dear Sir, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur"
+    ),
+    (
+        "43105633-0005-47f9-b8b9-1310ee4c5c14",
+        "190111B",
+        "190093T",
+        "2021-03-12 02:33:23",
+        "pending",
+        "ADD/DROP", 
+        "Hello Test from database"
     );
-
 
 -- table: replies
 INSERT INTO `srms`.`replies` (`id`, `req_id`, `user_id`, `datetime`, `body`)
