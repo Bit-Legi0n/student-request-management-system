@@ -3,10 +3,14 @@
 
 <head>
   <meta charset="UTF-8" />
+  <title>Staff Dashbaord</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
-</head>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js" crossorigin="anonymous"></script>
+
+  </head>
 
 <body>
   <%- include('./partials/navbar'); %>
@@ -20,7 +24,7 @@
             <input type="text" id="filter-by-index-no" class="form-control" placeholder="Search by Index No"
               aria-label="Search by Index No" aria-describedby="basic-addon2" />
           </div>
-          <div class="col-sm-3">
+          <div class="col-sm-3  ">
             <input type="text" id="filter-by-username" class="form-control" placeholder="Search by User Name"
               aria-label="Search by User Name" aria-describedby="basic-addon2" />
 
@@ -63,6 +67,7 @@
                 </div>
               </div>
             </th>
+            </th>
             <th scope="col">Date</th>
           </tr>
         </thead>
@@ -93,9 +98,13 @@
                       </span>
                       <% break; } %>
               </td>
-              <td>
-                <%= request.datetime %>
-              </td>
+                <td>
+                  <script type="text/javascript">
+                     document.write(
+                         dayjs("<%= request.datetime %>").format("YYYY/MM/DD h:mmA")
+                     );
+                 </script>
+                 </td>
             </tr>
             <% }); %>
         </tbody>
@@ -107,7 +116,6 @@
 
     <!-- Optional JavaScript; choose one of the two! -->
     <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
       crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
