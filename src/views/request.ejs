@@ -1,58 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-  <title>Requests</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <title>Requests</title>
 </head>
+
 <body>
-  <%- include('./partials/navbar'); %>
-  <div class="container">
-        <div class="col d-flex p-0">
-            <div class="card">
-                <div class="container" style="flex: 1 1">
-                        <div class="row">
-                            <div class="card  m-1">
-                                <div class="card-body p-2">
-                                    <span class="mx-1 float-right">Hi, Dave</span>
-                                </div>
+    <%- include('./partials/navbar'); %>
+        <div class="container">
+
+
+            <div class="row">
+                <div class="conversation-wrap col-lg-2">
+                </div>
+
+                <div class="message-wrap col-lg-8">
+                    <div class="msg-wrap">
+                        <br/>
+                        <% if(user.type == 'Staff'){ %>  
+                        <div class="card bg-dark text-white">
+                            <div class="card-header">
+                                Select Request Status
+                            </div>
+                            <div class="card-body">
+                        
+                            <form action="/reply/<%= request.id %>/status" method="post">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="reqStatus" id="reqStatus1" value="Accept">
+                                    <label class="form-check-label" for="reqStatus1">
+                                      Accept
+                                    </label>
+                                  </div>
+                                  <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="reqStatus" id="reqStatus2" value="Decline">
+                                    <label class="form-check-label" for="reqStatus2">
+                                      Decline
+                                    </label>
+                                  </div>
+                                  <button type="submit" class="btn btn-primary">Submit Status</button>
+                            </form>
+                            <br/>
+                        </div>
+                        </div>
+                        <br/>
+                         <% } %>
+                       
+
+                        <div class="media msg">
+                            <div class="media-body">
+                                <small class="pull-right time"><i class="fa fa-clock-o"></i> 12:10am</small>
+
+                                <h5 class="media-heading">Naimish Sakhpara</h5>
+                                <small class="col-lg-10">Arnab Goswami: "Some people close to Congress Party and close
+                                    to the government had a #secret #meeting in a farmhouse in Maharashtra in which Anna
+                                    Hazare send some representatives and they had a meeting in the discussed how to go
+                                    about this all fast and how eventually this will end."</small>
                             </div>
                         </div>
-                        <div class="row justify-content-end">
-                            <div class="card m-1">
-                                <div class="card-body p-2">
-                                    <span class="float-right">Hello</span>
-                                </div>
+                        <div class="media msg">
+                            <div class="media-body">
+                                <small class="pull-right time"><i class="fa fa-clock-o"></i> 12:10am</small>
+
+                                <h5 class="media-heading">Naimish Sakhpara</h5>
+                                <small class="col-lg-10">Arnab Goswami: "Some people close to Congress Party and close
+                                    to the government had a #secret #meeting in a farmhouse in Maharashtra in which Anna
+                                    Hazare send some representatives and they had a meeting in the discussed how to go
+                                    about this all fast and how eventually this will end."</small>
                             </div>
                         </div>
-                        <div class="row justify-content-end">
-                            <div class="card m-1">
-                                <div class="card-body p-2">
-                                    <span class="mx-2">What's up?</span>
-                                </div>
+
+                        <div class="media msg">
+                            <div class="media-body">
+                                <small class="pull-right time"><i class="fa fa-clock-o"></i> 12:10am</small>
+                                <h5 class="media-heading">Naimish Sakhpara</h5>
+
+                                <small class="col-lg-10">Arnab Goswami: "Some people close to Congress Party and close
+                                    to the government had a #secret #meeting in a farmhouse in Maharashtra in which Anna
+                                    Hazare send some representatives and they had a meeting in the discussed how to go
+                                    about this all fast and how eventually this will end."</small>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="card  m-1">
-                                <div class="card-body p-2">
-                                    <span>This is an to practice traversing a linked list. Given a pointer to the head node of a linked list, print each node's element, one per line. If the head pointer is null (indicating the list is empty), there is nothing to print. </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row justify-content-end">
-                            <div class="card m-1">
-                                <div class="card-body p-2">
-                                    <span> There are two elements in the linked list. They are represented as 16 -> 13 -> NULL. So, the printLinkedList function should print 16 and 13 each on a new line.</span>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
-                </div>            
+<br/>
+                    <% if(user.type == 'Student'){ %>
+                        <form action="/reply/<%= request.id %>" method="post" enctype="multipart/form-data">
+                            <div class="send-wrap ">
+    
+                                <textarea class="form-control send-message" rows="3" name="body" id="replybody"
+                                    placeholder="Write a reply..."></textarea>
+    
+    
+                            </div>
+                            <div class="btn-panel">
+    
+                                <div class="input-group mb-1">
+                                    <div class="custom-file">
+                                        <input type="file" name="file" class="custom-file-input" id="inputGroupFile02">
+                                        <label class="custom-file-label col-lg-6" for="inputGroupFile02">Choose file</label>
+                                    </div>
+                                    <button type="submit" class="col-lg-3 btn btn-primary" data-toggle="modal"
+                                        data-target="#exampleModal" data-whatever="@getbootstrap">Send Reply</button>
+                                </div>
+                            </div>
+                        </form>
+                      <% } %>
+                      <% if(user.type == 'Staff'){ %>  
+                        <form action="/reply/<%= request.id %>" method="post">
+                            <div class="send-wrap ">
+                                <textarea class="form-control send-message" rows="3" name="body" id="replybody"
+                                    placeholder="Write a reply..."></textarea>
+                            </div>
+                            <div class="btn-panel">
+                                <div class="input-group mb-1">
+                                    <button type="submit" class="col-lg-3 btn btn-primary" data-toggle="modal"
+                                        data-target="#exampleModal" data-whatever="@getbootstrap">Send Reply</button>
+                                </div>
+                            </div>
+                        </form>
+                        
+                     <% } %>
+
+                   
+                </div>
+            </div>
         </div>
-    </div>
-    </body>
+</body>
 
 </body>
+
 </html>
