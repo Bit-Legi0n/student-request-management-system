@@ -58,7 +58,7 @@
                                     <small class="pull-right time"><i class="fa fa-clock-o"></i> <%= reply.datetime %></small>
                                     <% if (reply.attachment) { %>
                                         <br />
-                                        <a href="/upload/<%= reply.attachment %>" download>
+                                        <a href="/uploads/<%= reply.attachment %>" download>
                                             <%= reply.attachment.substring(37) %></a>
                                     <% } %>
                                     <h5 class="media-heading"><%= reply.name %></h5>
