@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="userName" content="<%= user.name %>">
+    <meta name="requestId" content="<%= request.id %>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/studentDashboard.css" crossorigin="anonymous">
@@ -69,7 +71,7 @@
                     </div>
                     <br />
                     <% if(user.isStaff()){ %>
-                        <form action="/reply/<%= request.id %>" method="post">
+                        <form id="reply-form" action="/reply/<%= request.id %>" method="post">
                             <div class="send-wrap ">
                                 <textarea class="form-control send-message" rows="3" name="body" id="rbody"
                                     placeholder="Write a reply..."></textarea>
@@ -81,7 +83,7 @@
                             </div>
                         </form>
                     <% } else { %>
-                        <form action="/reply/<%= request.id %>" method="post" enctype="multipart/form-data">
+                        <form id="reply-form" action="/reply/<%= request.id %>" method="post" enctype="multipart/form-data">
                             <div class="send-wrap ">
                                 <textarea class="form-control send-message" rows="3" name="body" id="rbody"
                                     placeholder="Write a reply..."></textarea>
@@ -103,5 +105,7 @@
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/js/socket.js"></script>
 </body>
 </html>

@@ -27,7 +27,9 @@ const handler = (pool) => {
                 userId,
                 new Date(),
                 body,
-                req.files ? req.files[0].filename : undefined
+                req.files && req.files.length
+                    ? req.files[0].filename
+                    : undefined
             );
 
             const request = await getRequest(pool, reqId);
@@ -39,7 +41,7 @@ const handler = (pool) => {
                     userId == request.staff_id
                 ) {
                     await saveReply(pool, reply);
-                    res.redirect("/request/" + reqId);
+                    res.send(reply);
                 } else {
                     res.redirect("/dashboard");
                 }

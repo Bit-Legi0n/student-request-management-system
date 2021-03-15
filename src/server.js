@@ -1,20 +1,22 @@
+import cookieParser from "cookie-parser";
 import express from "express";
-import path from "path";
+import expressMySqlSession from "express-mysql-session";
+import expressSession from "express-session";
 import createError from "http-errors";
 import logger from "morgan";
-import session from "express-session";
-import expressMySqlSession from "express-mysql-session";
 import mysql from "mysql";
+import path from "path";
+import socketio from "socket.io";
 import {
-    PORT,
-    NODE_ENV,
-    MYSQL_HOST,
-    MYSQL_USER,
-    MYSQL_PASSWORD,
     MYSQL_DATABASE,
+    MYSQL_HOST,
+    MYSQL_PASSWORD,
+    MYSQL_USER,
+    NODE_ENV,
+    PORT,
+    SESS_LIFETIME,
     SESS_NAME,
     SESS_SECRET,
-    SESS_LIFETIME,
 } from "./config/constants";
 import router from "./routes/index";
 
@@ -49,25 +51,24 @@ app.use(express.static("public"));
 app.use(logger("dev"));
 
 // Session store
-const MySQLStore = expressMySqlSession(session);
+const MySQLStore = expressMySqlSession(expressSession);
 const sessionStore = new MySQLStore(
     { clearExpired: true, checkExpirationInterval: 600000, ...MySQLOptions },
     pool
 );
-app.use(
-    session({
-        name: SESS_NAME,
-        secret: SESS_SECRET,
-        saveUninitialized: false,
-        resave: false,
-        store: sessionStore,
-        cookie: {
-            sameSite: true,
-            secure: NODE_ENV === "production",
-            maxAge: parseInt(SESS_LIFETIME),
-        },
-    })
-);
+const session = expressSession({
+    name: SESS_NAME,
+    secret: SESS_SECRET,
+    saveUninitialized: false,
+    resave: false,
+    store: sessionStore,
+    cookie: {
+        sameSite: true,
+        secure: NODE_ENV === "production",
+        maxAge: parseInt(SESS_LIFETIME),
+    },
+});
+app.use(session);
 
 // Check session
 app.use((req, res, next) => {
@@ -77,6 +78,22 @@ app.use((req, res, next) => {
     next();
 });
 
+// Start server
+const io = socketio(
+    app.listen(PORT, () =>
+        console.log(`App running at http://localhost:${PORT}`)
+    )
+);
+
+io.use((socket, next) => {
+    let req = socket.handshake;
+    let res = socket.request.res || {};
+    cookieParser()(req, res, (err) => {
+        if (err) return next(err);
+        session(req, res, next);
+    });
+});
+
 // Routing
 const {
     loginRouter,
@@ -84,7 +101,7 @@ const {
     dashboardRouter,
     requestRouter,
     replyRouter,
-} = router(pool);
+} = router(pool, io);
 
 app.use("/login", loginRouter);
 app.use("/logout", logoutRouter);
@@ -111,6 +128,3 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render("error");
 });
-
-// Start server
-app.listen(PORT, () => console.log(`App running at http://localhost:${PORT}`));

@@ -9,7 +9,7 @@ import {
 } from "../util/database";
 import { authChecker } from "../util/middleware";
 
-const handler = (pool) => {
+const handler = (pool, io) => {
     const requestRouter = express.Router();
 
     requestRouter.get("/:requestId", authChecker, async (req, res) => {
@@ -22,6 +22,30 @@ const handler = (pool) => {
 
         if (request) {
             if (userId === request.student_id || userId === request.staff_id) {
+                // Socket.io
+                io.once("connection", (socket) => {
+                    socket.once("disconnect", () => {
+                        console.log("user disconnected from socket");
+                    });
+                    socket.once("join", async (room) => {
+                        const roomRequest = await getRequest(pool, room);
+                        const socketUser = await getUserById(
+                            pool,
+                            socket.handshake.session.user.userId
+                        );
+                        if (
+                            socketUser.id === roomRequest.staff_id ||
+                            socketUser.id === roomRequest.student_id
+                        ) {
+                            socket.join(room);
+                        }
+                    });
+                    socket.on("reply", (newReply) => {
+                        socket.to(requestId).emit("reply", newReply);
+                    });
+                });
+
+                // Response
                 const replies = await getRepliesForRequest(pool, requestId);
                 res.render("request", {
                     request,
@@ -29,7 +53,7 @@ const handler = (pool) => {
                     user,
                 });
             } else {
-                res.redirect("/dashboard");
+                res.render("/error");
             }
         } else {
             res.redirect("/dashboard");
@@ -49,7 +73,10 @@ const handler = (pool) => {
             status: "pending",
             type,
             body,
-            filepath: req.files.length > 0 ? req.files[0].filename : undefined,
+            filepath:
+                req.files && req.files.length
+                    ? req.files[0].filename
+                    : undefined,
         };
 
         try {
