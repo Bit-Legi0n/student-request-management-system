@@ -26,14 +26,15 @@
                 <div class="message-wrap col-lg-8">
                     <div class="msg-wrap">
                         <br />
-                        <% if (user.isStaff()){ %>
+                       
+                        
                             <div class="card bg-secondary text-white">
                                 <div class="card-header">
                                     Request Type: <%= request.type %>
                                 </div>
                                 <div class="card-body">
 
-                                    <h7 class="card-title">Request Status: <%= request.status %></h7>
+                                    <h6 class="card-title">Request Status: <%= request.status %></h6>
                                     <p class="card-text">T<%= request.body %></p>
                                     
                                     
@@ -56,6 +57,7 @@
                                   </h6>
                                 
                                     <br/>
+                                    <% if (user.isStaff()){ %>
                                     <p class="card-text">Update Request Status</p>
                                     <form action="/reply/<%= request.id %>/status" method="post">
                                         <div class="form-check">
@@ -74,11 +76,12 @@
                                         </div>
                                         <button type="submit" class="btn btn-primary">Submit Status</button>
                                     </form>
+                                    <% } %>
                                     <br />
                                 </div>
                             </div>
                             <br />
-                        <% } %>
+                        
 
 
                         <% replies.forEach(function(reply) { %>
