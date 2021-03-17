@@ -10,7 +10,6 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js" crossorigin="anonymous"></script>
-  
    </head>
    <body>
       <%- include('./partials/navbar'); %>
@@ -101,13 +100,14 @@
                      </button>
                   </div>
                   <div class="modal-body">
-                     <form action="/request" method="post" enctype="multipart/form-data">
+                     <form action="/request" method="post" enctype="multipart/form-data" autocomplete="off">
                         <div class="form-group row" required>
                            <div class="col-sm-1">
                               <label for="colFormLabel" class="col-sm-2 col-form-label">To</label>
                            </div>
                            <div class="col-sm-11">
-                              <input type="text" class="form-control" name="staff_name" id="staff_name" placeholder="Enter Recipient Name" value="" required>
+                              <input list="staff" type="text" class="form-control" name="staff_name" id="staff_name" placeholder="Enter Recipient Name" value="" required>
+                              <datalist id="staff"></datalist>
                            </div>
                         </div>
                         <div class="form-group">
@@ -145,5 +145,6 @@
       <!-- Optional JavaScript; choose one of the two! -->
       <!-- Option 1: Bootstrap Bundle with Popper -->
       <script src="/js/studentDashboardFiltering.js" crossorigin="anonymous"></script>
+      <script src="/js/autofillStaffName.js" crossorigin="anonymous"></script>
   </body>
 </html>
