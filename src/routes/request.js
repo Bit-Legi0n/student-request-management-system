@@ -53,10 +53,10 @@ const handler = (pool, io) => {
                     user,
                 });
             } else {
-                res.render("/error");
+                res.render("error");
             }
         } else {
-            res.redirect("/dashboard");
+            res.render("error");
         }
     });
 

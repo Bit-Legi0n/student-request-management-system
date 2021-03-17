@@ -43,10 +43,10 @@ const handler = (pool) => {
                     await saveReply(pool, reply);
                     res.send(reply);
                 } else {
-                    res.redirect("/dashboard");
+                    res.render("error");
                 }
             } else {
-                res.redirect("/dashboard");
+                res.render("error");
             }
         }
     );

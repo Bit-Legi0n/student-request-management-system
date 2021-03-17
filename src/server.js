@@ -108,9 +108,13 @@ app.use("/logout", logoutRouter);
 app.use("/dashboard", dashboardRouter);
 app.use("/request", requestRouter);
 app.use("/reply", replyRouter);
-app.use("*", (req, res) => {
-    // Default route
-    res.redirect("/login");
+app.use("/", (req, res, next) => {
+    // Handle base route
+    if (req.url === "/") {
+        res.redirect("/dashboard");
+    } else {
+        next();
+    }
 });
 
 // catch 404 and forward to error handler
