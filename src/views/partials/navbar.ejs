@@ -1,11 +1,22 @@
-<nav class="navbar navbar-dark bg-dark justify-content-between">   
-    <div><a class="navbar-brand" href="#">
-       <img src="/img/mail.png" width="30" height="30" alt="">
-  </a>
-  <a class="navbar-brand" href="#">Dashboard</a>
- </div>
-    <div>
-       
-      <a class="nav-link" href="/logout"><%= user.name %> | Log out</a>
-    </div>
-  </nav>
+<nav class="navbar navbar-dark bg-dark justify-content-between">
+  <div class="w-15"><a class="navbar-brand" href="#">
+      <img src="/img/mail.png" width="30" height="30" alt="">
+    </a>
+    <a class="navbar-brand" href="#">Dashboard</a>
+  </div>
+  <div>
+    <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+      <li class="nav-item">
+        <a class="nav-link text-light text-right">
+          <%= user.name %>
+        </a>
+      </li>
+      <li class="nav-item">
+        |
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout"> | Log out</a>
+      </li>
+    </ul>
+  </div>
+</nav>

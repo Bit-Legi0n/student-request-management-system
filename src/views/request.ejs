@@ -129,11 +129,11 @@
 
                     <% if(user.isStaff()){ %>
                         <form id="reply-form" action="/reply/<%= request.id %>" method="post">
-                            <div class="send-wrap ">
+                            <div class="send-wrap mt-3">
                                 <textarea class="form-control send-message" rows="3" name="body" id="rbody"
                                     placeholder="Write a reply..."></textarea>
                             </div>
-                            <div class="btn-panel">
+                            <div class="btn-panel mt-1">
                                 <div class="input-group mb-1">
                                     <button type="submit" class="col-lg-3 btn btn-primary">Send Reply</button>
                                 </div>
@@ -141,7 +141,7 @@
                         </form>
                     <% } else { %>
                         <form id="reply-form" action="/reply/<%= request.id %>" method="post" enctype="multipart/form-data">
-                            <div class="send-wrap ">
+                            <div class="send-wrap mt-3">
                                 <textarea class="form-control send-message" rows="3" name="body" id="rbody"
                                     placeholder="Write a reply..."></textarea>
                             </div>
@@ -150,8 +150,8 @@
                                     name="file">
                                 <label class="custom-file-label" for="fileInput">Choose file</label>
                             </div>
-                            <div class="btn-panel">
-                                <div class="input-group mb-1">
+                            <div class="btn-panel mt-1">
+                                <div class="input-group mb-1 ">
                                     <button type="submit" class="col-lg-3 btn btn-primary">Send Reply</button>
                                 </div>
                             </div>
