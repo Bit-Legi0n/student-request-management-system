@@ -223,7 +223,8 @@ const getRepliesForRequest = async (pool, reqId) => {
             FROM replies
             LEFT JOIN files ON files.reply_id = replies.id
             INNER JOIN users ON users.id=replies.user_id
-            WHERE replies.req_id = ?;`,
+            WHERE replies.req_id = ?
+            ORDER BY replies.datetime;`,
             [reqId]
         );
     } catch (error) {
