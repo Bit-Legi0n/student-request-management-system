@@ -9,125 +9,119 @@
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js" crossorigin="anonymous"></script>
-
-  </head>
+</head>
 
 <body>
   <%- include('./partials/navbar'); %>
 
-    <div class="container-fluid">
-      <br />
-      <!-- search bar -->
-      <div class="row">
-        <div class="col-sm-3">
-       
-            <input type="text" id="filter-by-index-no" class="form-control" placeholder="Search by Index No"
-              aria-label="Search by Index No" aria-describedby="basic-addon2" />
-          </div>
-          <div class="col-sm-3  ">
-            <input type="text" id="filter-by-username" class="form-control" placeholder="Search by User Name"
-              aria-label="Search by User Name" aria-describedby="basic-addon2" />
-
-       
-        </div>
-
+  <div class="container-fluid">
+    <br />
+    <!-- search bar -->
+    <div class="row">
+      <div class="col-sm-3">
+        <input type="text" id="filter-by-index-no" class="form-control" placeholder="Search by Index No"
+          aria-label="Search by Index No" aria-describedby="basic-addon2" />
       </div>
-      <br />
-      <table class="table table-striped" id="table">
-        <thead>
-          <tr>
-            <th scope="col">Index</th>
-            <th scope="col">Name</th>
-            <th scope="col">
-              <div class="dropdown show">
-                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Type
-                </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <a class="dropdown-item" href="/">--All--</a>
-                  <a class="dropdown-item" href="?type=Add/Drop">Add/Drop</a>
-                  <a class="dropdown-item" href="?type=Dealdline Extention">Dealdline Extention</a>
-                  <a class="dropdown-item" href="?type=Apply for Retake Exam">Apply for Retake Exam</a>
-                  <a class="dropdown-item" href="?type=Other">Other</a>
-                </div>
-              </div>
-            </th>
-            <th scope="col4">Body</th>
-            <th scope="col">
-              <div class="dropdown show">
-                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Status
-                </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <a class="dropdown-item" href="/">--All--</a>
-                  <a class="dropdown-item" href="?status=approved">Aproved</a>
-                  <a class="dropdown-item" href="?status=pending">Pending</a>
-                  <a class="dropdown-item" href="?status=declined">Declined</a>
-                </div>
-              </div>
-            </th>
-            </th>
-            <th scope="col5">Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% requests.forEach(function(request) { %>
-            <tr>
-              <td class="col1">
-                <%= request.student_id %>
-              </td>
-              <td class="col2">
-                <%= request.student_name %>
-              </td>
-              <td><a href="/request/<%= request.id %>">
-                  <%= request.type %>
-                </a></td>
-                 <!-- Request body logic-->
-                 <% if ( request.body.length < 25 ) { %>
-                  <td class="col1"><a href="/request/<%= request.id %>"><%= request.body %></a></td>
-               <% } else { %>
-                  <td class="col1"><a href="/request/<%= request.id %>"><%= request.body.substring(1,24) %>...</a></td>
-               <% } %>
-              <td>
-                <% switch(request.status) { case 'pending' : %>
-                  <span class="badge badge-warning">
-                    <%= request.status %>
-                  </span>
-                  <% break; case 'approved' : %>
-                    <span class="badge badge-success">
-                      <%= request.status %>
-                    </span>
-                    <% break; case 'declined' : %>
-                      <span class="badge badge-danger">
-                        <%= request.status %>
-                      </span>
-                      <% break; } %>
-              </td>
-                <td>
-                  <script type="text/javascript">
-                     document.write(
-                         dayjs("<%= request.datetime %>").format("YYYY/MM/DD h:mmA")
-                     );
-                 </script>
-                 </td>
-            </tr>
-            <% }); %>
-        </tbody>
-      </table>
+      <div class="col-sm-3  ">
+        <input type="text" id="filter-by-username" class="form-control" placeholder="Search by User Name"
+          aria-label="Search by User Name" aria-describedby="basic-addon2" />
+      </div>
     </div>
+    <br />
+    <table class="table table-striped" id="table">
+      <thead>
+        <tr>
+          <th scope="col">Index</th>
+          <th scope="col">Name</th>
+          <th scope="col">
+            <div class="dropdown show">
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Type
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="/">--All--</a>
+                <a class="dropdown-item" href="?type=Add/Drop">Add/Drop</a>
+                <a class="dropdown-item" href="?type=Dealdline Extention">Dealdline Extention</a>
+                <a class="dropdown-item" href="?type=Apply for Retake Exam">Apply for Retake Exam</a>
+                <a class="dropdown-item" href="?type=Other">Other</a>
+              </div>
+            </div>
+          </th>
+          <th scope="col4">Body</th>
+          <th scope="col">
+            <div class="dropdown show">
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Status
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="/">--All--</a>
+                <a class="dropdown-item" href="?status=approved">Aproved</a>
+                <a class="dropdown-item" href="?status=pending">Pending</a>
+                <a class="dropdown-item" href="?status=declined">Declined</a>
+              </div>
+            </div>
+          </th>
+          </th>
+          <th scope="col5">Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% requests.forEach(function(request) { %>
+        <tr>
+          <td class="col1">
+            <%= request.student_id %>
+          </td>
+          <td class="col2">
+            <%= request.student_name %>
+          </td>
+          <td>
+            <a href="/request/<%= request.id %>">
+              <%= request.type %>
+            </a>
+          </td>
+          <!-- Request body logic-->
+          <% if ( request.body.length < 25 ) { %>
+          <td class="col1">
+            <a href="/request/<%= request.id %>"><%= request.body %></a>
+          </td>
+          <% } else { %>
+          <td class="col1">
+            <a href="/request/<%= request.id %>"><%= request.body.substring(1,24) %>...</a>
+          </td>
+          <% } %>
+          <td>
+            <% switch(request.status) { case 'pending' : %>
+            <span class="badge badge-warning">
+              <%= request.status %>
+            </span>
+            <% break; case 'approved' : %>
+            <span class="badge badge-success">
+              <%= request.status %>
+            </span>
+            <% break; case 'declined' : %>
+            <span class="badge badge-danger">
+              <%= request.status %>
+            </span>
+            <% break; } %>
+          </td>
+          <td>
+            <script type="text/javascript">
+              document.write(dayjs("<%= request.datetime %>").format("YYYY/MM/DD h:mmA"));
+            </script>
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
 
-
-
-
-    <!-- Optional JavaScript; choose one of the two! -->
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
-      crossorigin="anonymous"></script>
-    <script src="/js/staffDashboardFiltering.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+    crossorigin="anonymous"></script>
+  <script src="/js/staffDashboardFiltering.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
