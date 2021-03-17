@@ -101,6 +101,7 @@ const {
     dashboardRouter,
     requestRouter,
     replyRouter,
+    staffRouter,
 } = router(pool, io);
 
 app.use("/login", loginRouter);
@@ -108,6 +109,7 @@ app.use("/logout", logoutRouter);
 app.use("/dashboard", dashboardRouter);
 app.use("/request", requestRouter);
 app.use("/reply", replyRouter);
+app.use("/staff", staffRouter);
 app.use("/", (req, res, next) => {
     // Handle base route
     if (req.url === "/") {

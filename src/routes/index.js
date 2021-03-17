@@ -3,6 +3,7 @@ import logoutRouter from "./logout";
 import dashboardRouter from "./dashboard";
 import requestRouter from "./request";
 import replyRouter from "./reply";
+import staffRouter from "./staff";
 
 const handler = (pool, io) => {
     return {
@@ -11,6 +12,7 @@ const handler = (pool, io) => {
         dashboardRouter: dashboardRouter(pool),
         requestRouter: requestRouter(pool, io),
         replyRouter: replyRouter(pool),
+        staffRouter: staffRouter(pool),
     };
 };
 

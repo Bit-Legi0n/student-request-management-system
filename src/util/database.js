@@ -255,6 +255,22 @@ const saveReply = async (pool, reply) => {
     }
 };
 
+// getStaff
+// Get names of matching staff members
+const getStaffNames = async (pool, staffName) => {
+    let results;
+    try {
+        results = await queryPromise(
+            pool,
+            "SELECT name FROM users WHERE type='Staff' AND name LIKE ? ORDER BY name;",
+            ["%" + staffName + "%"]
+        );
+    } catch (error) {
+        throw "Database Error";
+    }
+    return results;
+};
+
 export {
     getUserById,
     getUsername,
@@ -265,4 +281,5 @@ export {
     getRequest,
     getRepliesForRequest,
     saveReply,
+    getStaffNames,
 };
