@@ -66,7 +66,7 @@ const getRequestsForStaff = async (pool, id, status, type) => {
             student.name as student_name,
             requests.status,
             requests.datetime,
-            SUBSTRING(requests.body, 1, 15) as body
+            SUBSTRING(requests.body, 1, 25) as body
             FROM requests
             INNER JOIN users AS student ON student.id = requests.student_id
             WHERE requests.staff_id = ?`;
@@ -99,7 +99,7 @@ const getRequestsForStudent = async (pool, id, status, type) => {
             staff.name as staff_name,
             requests.status,
             requests.datetime,
-            SUBSTRING(requests.body, 1, 15) as body
+            SUBSTRING(requests.body, 1, 25) as body
             FROM requests
             INNER JOIN users AS staff ON staff.id = requests.staff_id
             WHERE requests.student_id = ?`;
