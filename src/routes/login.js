@@ -9,7 +9,7 @@ const handler = (pool) => {
     // Get request for login page
     loginRouter.get("", sessionChecker, (req, res) => {
         // Show login page
-        res.render("login");
+        res.render("login", { invalidLogin: req.query.invalid });
     });
 
     // Post request for login
@@ -18,10 +18,8 @@ const handler = (pool) => {
 
         const user = await getUserById(pool, userId);
 
-        if (!user) {
-            res.redirect("/login");
-        } else if (!user.validPassword(password)) {
-            res.redirect("/login");
+        if (!user || !user.validPassword(password)) {
+            res.redirect("/login?invalid=true");
         } else {
             req.session.user = sessionizeUser(user);
             res.redirect("/dashboard");
