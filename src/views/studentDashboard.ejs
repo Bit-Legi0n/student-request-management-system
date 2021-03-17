@@ -5,7 +5,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
       <link rel="stylesheet" href="/css/studentDashboard.css" crossorigin="anonymous">
-      <title>Student Dashbaord</title>
+      <title>Dashboard</title>
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
@@ -35,6 +35,7 @@
                <tr>
                   <th scope="col">Staff Member</th>
                   <th scope="col">Request Type</th>
+                  <th scope="col">Request Body</th>
                   <th scope="col">
                      <div class="dropdown show">
                         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -56,6 +57,13 @@
                <tr>
                   <td class="col1"><%= request.staff_name %></td>
                   <td><a href="/request/<%= request.id %>"><%= request.type %></a></td>
+                  <!-- Request body logic-->
+                  <% if ( request.body.length < 25 ) { %>
+                     <td class="col1"><a href="/request/<%= request.id %>"><%= request.body %></a></td>
+                  <% } else { %>
+                     <td class="col1"><a href="/request/<%= request.id %>"><%= request.body.substring(1,24) %>...</a></td>
+                  <% } %>
+
                   <td>
                      <% switch(request.status) {
                         case 'pending' : %>
@@ -70,6 +78,7 @@
                         }
                         %>
                   </td>
+                  
                   <td>
                   <script type="text/javascript">
                      document.write(

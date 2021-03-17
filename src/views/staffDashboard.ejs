@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>Staff Dashbaord</title>
+  <title>Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
@@ -53,6 +53,7 @@
                 </div>
               </div>
             </th>
+            <th scope="col4">Body</th>
             <th scope="col">
               <div class="dropdown show">
                 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
@@ -68,7 +69,7 @@
               </div>
             </th>
             </th>
-            <th scope="col">Date</th>
+            <th scope="col5">Date</th>
           </tr>
         </thead>
         <tbody>
@@ -83,6 +84,12 @@
               <td><a href="/request/<%= request.id %>">
                   <%= request.type %>
                 </a></td>
+                 <!-- Request body logic-->
+                 <% if ( request.body.length < 25 ) { %>
+                  <td class="col1"><a href="/request/<%= request.id %>"><%= request.body %></a></td>
+               <% } else { %>
+                  <td class="col1"><a href="/request/<%= request.id %>"><%= request.body.substring(1,24) %>...</a></td>
+               <% } %>
               <td>
                 <% switch(request.status) { case 'pending' : %>
                   <span class="badge badge-warning">
