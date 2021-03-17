@@ -11,38 +11,65 @@ const requestId = document.head.querySelector("[name=requestId][content]")
 
 const addReply = (newReply) => {
     // Building HTML
+    const isSelf = newReply.name === userName;
+    let temp;
+
     const mainNode = document.createElement("div");
-    mainNode.classList.add("media", "msg");
+    temp = isSelf ? ["text-white", "bg-info"] : ["bg-light"];
+    mainNode.classList.add("card", ...temp);
 
-    const subNode = document.createElement("div");
-    subNode.classList.add("media-body");
-    mainNode.appendChild(subNode);
-
-    const datetimeNode = document.createElement("small");
-    datetimeNode.classList.add("pull-right", "time");
-    datetimeNode.textContent = new Date(newReply.datetime);
-    subNode.appendChild(datetimeNode);
-
-    if (newReply.attachment) {
-        const breakTag = document.createElement("br");
-        subNode.appendChild(breakTag);
-
-        const anchorNode = document.createElement("a");
-        anchorNode.href = "/uploads/" + newReply.attachment;
-        anchorNode.textContent = newReply.attachment.substring(37);
-        subNode.appendChild(anchorNode);
-    }
     const nameNode = document.createElement("h5");
-    nameNode.classList.add("media-heading");
+    nameNode.classList.add("card-header");
     nameNode.textContent = newReply.name;
-    subNode.appendChild(nameNode);
+    mainNode.appendChild(nameNode);
 
-    const bodyNode = document.createElement("small");
-    bodyNode.classList.add("col-lg-10");
-    bodyNode.textContent = newReply.body;
-    subNode.appendChild(bodyNode);
+    const bodyNode = document.createElement("div");
+    bodyNode.classList.add("card-body");
 
+    const bodyTextNode = document.createElement("p");
+    bodyTextNode.classList.add("card-text");
+    bodyTextNode.textContent = newReply.body;
+    bodyNode.appendChild(bodyTextNode);
+
+    const datetimeNode = document.createElement("h6");
+    datetimeNode.classList.add(
+        "card-subtitle",
+        "mb-2",
+        "text-right",
+        "initialism"
+    );
+    if (!isSelf) datetimeNode.classList.add("text-muted");
+
+    const clockIconNode = document.createElement("i");
+    clockIconNode.classList.add("fas", "fa-clock");
+    datetimeNode.appendChild(clockIconNode);
+
+    const dateTimeSpanNode = document.createElement("span");
+    dateTimeSpanNode.textContent = dayjs(newReply.datetime).format(
+        "YYYY/MM/DD h:mmA"
+    );
+    datetimeNode.appendChild(dateTimeSpanNode);
+    bodyNode.appendChild(datetimeNode);
+    if (newReply.attachment) {
+        const paperclipIconNode = document.createElement("i");
+        paperclipIconNode.classList.add("fa", "fa-paperclip");
+        paperclipIconNode.ariaHidden = "true";
+        bodyNode.appendChild(paperclipIconNode);
+
+        const attachmentSpanNode = document.createElement("span");
+        attachmentSpanNode.classList.add("initialism");
+        attachmentSpanNode.textContent = "Attachment: ";
+        bodyNode.appendChild(attachmentSpanNode);
+
+        const attachmentAnchorNode = document.createElement("a");
+        attachmentAnchorNode.href = "/uploads/" + newReply.attachment;
+        attachmentAnchorNode.textContent = newReply.attachment.substring(37);
+        attachmentAnchorNode.download = newReply.attachment.substring(37);
+        bodyNode.appendChild(attachmentAnchorNode);
+    }
+    mainNode.appendChild(bodyNode);
     repliesDiv.appendChild(mainNode);
+    repliesDiv.appendChild(document.createElement("br"));
 };
 
 form.addEventListener("submit", (e) => {
