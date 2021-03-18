@@ -64,11 +64,11 @@
           </td>
           <!-- Request body logic-->
           <% if ( request.body.length < 25 ) { %>
-          <td class="col1">
+          <td>
             <a href="/request/<%= request.id %>"><%= request.body %></a>
           </td>
           <% } else { %>
-          <td class="col1">
+          <td>
             <a href="/request/<%= request.id %>"><%= request.body.substring(1,24) %>...</a>
           </td>
           <% } %>

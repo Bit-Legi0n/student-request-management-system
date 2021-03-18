@@ -48,7 +48,7 @@
               </div>
             </div>
           </th>
-          <th scope="col4">Body</th>
+          <th scope="col">Body</th>
           <th scope="col">
             <div class="dropdown show">
               <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
@@ -63,8 +63,7 @@
               </div>
             </div>
           </th>
-          </th>
-          <th scope="col5">Date</th>
+          <th scope="col">Date</th>
         </tr>
       </thead>
       <tbody>
@@ -83,11 +82,11 @@
           </td>
           <!-- Request body logic-->
           <% if ( request.body.length < 25 ) { %>
-          <td class="col1">
+          <td>
             <a href="/request/<%= request.id %>"><%= request.body %></a>
           </td>
           <% } else { %>
-          <td class="col1">
+          <td>
             <a href="/request/<%= request.id %>"><%= request.body.substring(1,24) %>...</a>
           </td>
           <% } %>
