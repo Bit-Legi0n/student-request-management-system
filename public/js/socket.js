@@ -80,8 +80,8 @@ form.addEventListener("submit", (e) => {
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             form.reset();
-            document.querySelector(".custom-file-label").innerText =
-                "Choose file";
+            const fileInputLabel = document.querySelector(".custom-file-label");
+            if (fileInputLabel) fileInputLabel.innerText = "Choose file";
             const response = JSON.parse(this.response);
             const newReply = { ...response, name: userName };
             addReply(newReply);
